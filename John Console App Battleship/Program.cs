@@ -5,27 +5,30 @@
     {
         static void Main(string[] args)
         {
-            Console.BackgroundColor = ConsoleColor.DarkGreen;
-            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            BattleShipDisplay battleShipDisplay = new BattleShipDisplay();
+
+            int left = 5;
+            int top = 11;
+
 
             // See https://aka.ms/new-console-template for more information
-            Console.WriteLine("Battleship has been hidden by CPU!");
+            battleShipDisplay.WriteStringLine("Battleship has been hidden by CPU!");
 
-            Console.Write("Type your name in: ");
-            var name = Console.ReadLine();
+            battleShipDisplay.WriteString("Type your name in: ");
+
+            battleShipDisplay.ReadLineFromActor();
+            var name = battleShipDisplay.GetLineFromActor();
 
             /*
             Console.Write($"{Environment.NewLine}Press any key to exit...");
             Console.ReadKey(true);
             */
 
-            int left = 5;
-            int top = 11;
-
             char PlayerRow = 'z';
             int PlayerColumn = 0;
             bool runGame = true;
-            ConsoleKeyInfo cKeyInfo;
+            char actorChar = 'y';
+
 
             BattleShipGrid battleShipGrid = new BattleShipGrid(10, 10);
             Console.SetCursorPosition(left + 3, top + 17);
@@ -86,66 +89,69 @@
 
 
                 // Thread.Sleep(1000);
-                cKeyInfo = Console.ReadKey(true);
+                battleShipDisplay.ReadCharFromActor();
+                actorChar = battleShipDisplay.GetCharFromActor();
 
-                if (Char.IsNumber(cKeyInfo.KeyChar)) {
-                    int UserNumber = Convert.ToInt32(cKeyInfo.KeyChar);
-                    if (UserNumber >= 49) {
-                        PlayerColumn = UserNumber - 48;
+                battleShipDisplay.WriteCharToPoint(actorChar, left + 25, top + 1);
+
+                if (Char.IsNumber(actorChar) == true) {
+                    if (actorChar >= 49) {
+                        PlayerColumn = actorChar - 48;
                     }
                     else {
                         PlayerColumn = 10;
                     }
                 }
                 else {
-
-                    switch (cKeyInfo.Key) {
-                        case ConsoleKey.Q:
+                    switch (actorChar) {
+                        case 'Q':
                             runGame = false;
                             break;
 
-                        case ConsoleKey.A:
+                        case 'A':
                             PlayerRow = 'A';
                             break;
 
-                        case ConsoleKey.B:
+                        case 'B':
                             PlayerRow = 'B';
                             break;
 
-                        case ConsoleKey.C:
+                        case 'C':
                             PlayerRow = 'C';
                             break;
 
-                        case ConsoleKey.D:
+                        case 'D':
                             PlayerRow = 'D';
                             break;
 
-                        case ConsoleKey.E:
+                        case 'E':
                             PlayerRow = 'E';
                             break;
 
-                        case ConsoleKey.F:
+                        case 'F':
                             PlayerRow = 'F';
                             break;
 
-                        case ConsoleKey.G:
+                        case 'G':
                             PlayerRow = 'G';
                             break;
 
-                        case ConsoleKey.H:
+                        case 'H':
                             PlayerRow = 'H';
                             break;
 
-                        case ConsoleKey.I:
+                        case 'I':
                             PlayerRow = 'I';
                             break;
 
-                        case ConsoleKey.J:
+                        case 'J':
                             PlayerRow = 'J';
                             break;
 
                     } // switch
-                } // else
+
+                }
+
 
             } // while
 
