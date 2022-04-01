@@ -1,10 +1,6 @@
 ﻿namespace BattleShip
 {
-    class BattleShipGrid
-    {
-
-    }
-
+ 
     class Program
     {
         static void Main(string[] args)
@@ -25,11 +21,15 @@
 
             int left = 5;
             int top = 11;
-            Random rand = new Random();
+
             char PlayerRow = 'z';
             int PlayerColumn = 0;
             bool runGame = true;
             ConsoleKeyInfo cKeyInfo;
+
+            BattleShipGrid battleShipGrid = new BattleShipGrid(10, 10);
+            Console.SetCursorPosition(left + 3, top + 17);
+            Console.Write("  Battleship Start Row {0}  --> Start Column {1}  ", battleShipGrid.BattleShipRowStart, battleShipGrid.BattleShipColStart);
 
             // here it asks to press "E" to exit
             // and the key "E" is not shown in
