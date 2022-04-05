@@ -9,6 +9,7 @@
 
             int left = 5;
             int top = 11;
+            battleShipDisplay.setGridLocation(5, 11);
 
 
             // See https://aka.ms/new-console-template for more information
@@ -31,8 +32,9 @@
 
 
             BattleShipGrid battleShipGrid = new BattleShipGrid(10, 10);
-            Console.SetCursorPosition(left + 3, top + 17);
-            Console.Write("  Battleship Start Row {0}  --> Start Column {1}  ", battleShipGrid.BattleShipRowStart, battleShipGrid.BattleShipColStart);
+
+            string displayString = $"Battleship Start Row {battleShipGrid.BattleShipRowStart}  --> Start Column {battleShipGrid.BattleShipColStart}  ";
+            battleShipDisplay.WriteInformationLine(displayString);
 
             // here it asks to press "E" to exit
             // and the key "E" is not shown in

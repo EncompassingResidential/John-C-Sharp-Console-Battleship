@@ -22,8 +22,8 @@ public class BattleShipDisplay
 		Console.BackgroundColor = ConsoleColor.DarkGreen;
 		Console.ForegroundColor = ConsoleColor.DarkBlue;
 
-		_BattleShipLocationLeft =  5;
-		_BattleShipLocationTop  = 11;
+		_BattleShipLocationLeft = 1;
+		_BattleShipLocationTop  = 1;
 
 		_BattleShipGridWidth  = 10 * 2;
 		_BattleShipGridHeight = 10;
@@ -64,6 +64,16 @@ public char GetCharFromActor() {
 
 			_ActorInputString = "Player 1";
 		}
+	}
+
+	public void setGridLocation(int battleshiplocationleft, int battleshiplocationtop) {
+		_BattleShipLocationLeft = battleshiplocationleft;
+		_BattleShipLocationTop  = battleshiplocationtop;
+	}
+
+	public void WriteInformationLine(string stringToPrint) {
+		Console.SetCursorPosition(_InfoLocationLeft, _InfoLocationTop);
+		Console.Write(stringToPrint);
 	}
 
 	public void WriteStringLine(string stringToWrite) {
