@@ -5,14 +5,16 @@
     {
         static void Main(string[] args)
         {
+            // This creates class, but setGridLocations 
             BattleShipDisplay battleShipDisplay = new BattleShipDisplay();
 
             int left = 5;
             int top = 11;
+
+            battleShipDisplay.WriteLineToPoint("Calling battleShipDisplay.setGridLocation(15, 21)", 30, 3);
             battleShipDisplay.setGridLocation(15, 21);
+            battleShipDisplay.WriteLineToPoint("Done with battleShipDisplay.setGridLocation(15, 21)", 30, 4);
 
-
-            // See https://aka.ms/new-console-template for more information
             battleShipDisplay.WriteStringLine("Battleship has been hidden by CPU!");
 
             battleShipDisplay.WriteString("Type Your Name In : ");
@@ -20,38 +22,28 @@
             battleShipDisplay.ReadLineFromActor();
             var name = battleShipDisplay.GetLineFromActor();
 
-            /*
-            Console.Write($"{Environment.NewLine}Press any key to exit...");
-            Console.ReadKey(true);
-            */
-
             char PlayerRow = 'z';
             int PlayerColumn = 0;
             bool runGame = true;
             char actorChar = 'y';
-
+            
 
             BattleShipGrid battleShipGrid = new BattleShipGrid(10, 10);
 
             string displayString = $"Battleship Start Row {battleShipGrid.BattleShipRowStart}  --> Start Column {battleShipGrid.BattleShipColStart}  ";
             battleShipDisplay.WriteInformationLine(displayString);
 
-            // here it asks to press "E" to exit
-            // and the key "E" is not shown in
-            // the console output window
             while (runGame)
             {
                 var currentDate = DateTime.Now;
 
-                Console.SetCursorPosition(1, 1);
+                battleShipDisplay.WriteHeaderLine($"Hello, {name}, on {currentDate:d} at {currentDate:t}!", 0, 0);
+                battleShipDisplay.WriteHeaderLine("      Battleship        ", 0, 1);
+                battleShipDisplay.WriteHeaderLine("........................", 0, 2);
+                battleShipDisplay.WriteHeaderLine(".......The Ocean........", 0, 3);
+                battleShipDisplay.WriteHeaderLine("........................", 0, 4);
 
-                Console.WriteLine($"{Environment.NewLine}Hello, {name}, on {currentDate:d} at {currentDate:t}!");
-                Console.WriteLine("      Battleship        ");
-                Console.WriteLine("........................");
-                Console.WriteLine(".......The Ocean........");
-                Console.WriteLine("........................");
-
-                Console.WriteLine("\nPress 'q' or 'Q' to exit the process...");
+                battleShipDisplay.WriteHeaderLine("Press 'q' or 'Q' to exit the process...", 0, 6);
 
                 Console.SetCursorPosition(left, top - 1);
                 Console.Write("1 2 3 4 5 6 7 8 9 10");

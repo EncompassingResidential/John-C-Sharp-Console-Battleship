@@ -9,14 +9,14 @@ It is run from the Command Line Interface (CLI) or double clicked from mouse.
 'Found on https://www.delftstack.com/howto/powershell/running-executable-files-in-powershell/'
 
 Start-Process -wait -FilePath '.\John Console App Battleship.exe'
-'''
+~~~
 or
 The website said if you want "quiet mode" use this set of arguments '/s /v /qn'
-'''
+~~~
 'Start-Process -wait -FilePath '.\John Console App Battleship.exe' -ArgumentList '/s /v/qn' -PassThru'
 
 
-'''
+~~~
 PS C:\..\source\repos\John Console App Battleship\John Console App Battleship\bin\Debug\net6.0> Start-Process -wait -FilePath '.\John Console App Battleship.exe'
 PS C:\..\source\repos\John Console App Battleship\John Console App Battleship\bin\Debug\net6.0> dir
   (use "git add <file>..." to include in what will be committed)
@@ -40,4 +40,8 @@ Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName
      18       4      432       1984       0.02  28004   2 John Console App Battleship
      class Program
      {
-'''
+~~~
+
+### C# resources used
+
+https://aka.ms/new-console-template
