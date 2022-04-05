@@ -9,13 +9,13 @@
 
             int left = 5;
             int top = 11;
-            battleShipDisplay.setGridLocation(5, 11);
+            battleShipDisplay.setGridLocation(15, 21);
 
 
             // See https://aka.ms/new-console-template for more information
             battleShipDisplay.WriteStringLine("Battleship has been hidden by CPU!");
 
-            battleShipDisplay.WriteString("Type your name in: ");
+            battleShipDisplay.WriteString("Type Your Name In : ");
 
             battleShipDisplay.ReadLineFromActor();
             var name = battleShipDisplay.GetLineFromActor();

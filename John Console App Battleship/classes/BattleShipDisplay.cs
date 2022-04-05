@@ -28,15 +28,26 @@ public class BattleShipDisplay
 		_BattleShipGridWidth  = 10 * 2;
 		_BattleShipGridHeight = 10;
 
-		_ErrorLocationLeft = _BattleShipLocationLeft + _BattleShipGridWidth  + 5;
-		_ErrorLocationTop  = _BattleShipLocationTop  + 0;
+		updateDisplaySettings();
+	}
+
+	private void updateDisplaySettings() {
+		_ErrorLocationLeft = _BattleShipLocationLeft + _BattleShipGridWidth + 5;
+		_ErrorLocationTop = _BattleShipLocationTop + 0;
 
 		_InfoLocationLeft = _BattleShipLocationLeft + 3;
-		_InfoLocationTop  = _BattleShipLocationTop + _BattleShipGridHeight + 5;
+		_InfoLocationTop = _BattleShipLocationTop + _BattleShipGridHeight + 5;
+	}
 
-}
+	public void setGridLocation(int battleshiplocationleft, int battleshiplocationtop) {
+		_BattleShipLocationLeft = battleshiplocationleft;
+		_BattleShipLocationTop = battleshiplocationtop;
 
-public char GetCharFromActor() {
+		updateDisplaySettings();
+	}
+
+
+	public char GetCharFromActor() {
 		return _ActorInputChar;
 	}
 
@@ -54,7 +65,7 @@ public char GetCharFromActor() {
 
 	public void ReadLineFromActor() {
 		string? inputLine = Console.ReadLine();
-		if (inputLine != null) {
+		if (inputLine != null && inputLine != "") {
 			string printThis = $"ReadLineFromActor if (inputLine != null) Actor typed <{inputLine}>";
 			WriteLineToPoint(printThis, _ErrorLocationLeft, _ErrorLocationTop);
 			_ActorInputString = inputLine;
@@ -66,13 +77,12 @@ public char GetCharFromActor() {
 		}
 	}
 
-	public void setGridLocation(int battleshiplocationleft, int battleshiplocationtop) {
-		_BattleShipLocationLeft = battleshiplocationleft;
-		_BattleShipLocationTop  = battleshiplocationtop;
-	}
-
 	public void WriteInformationLine(string stringToPrint) {
-		Console.SetCursorPosition(_InfoLocationLeft, _InfoLocationTop);
+		/*
+		 * 		_InfoLocationLeft = _BattleShipLocationLeft + 3;
+		 * 		_InfoLocationTop  = _BattleShipLocationTop + _BattleShipGridHeight + 5;
+		 */
+		Console.SetCursorPosition(_InfoLocationLeft + 30, _InfoLocationTop);
 		Console.Write(stringToPrint);
 	}
 
