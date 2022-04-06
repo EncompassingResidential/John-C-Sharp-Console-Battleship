@@ -44,24 +44,24 @@ public class BattleShipDisplay
 	}
 
 	private void updateDisplaySettings() {
-		WriteLineToPoint($"updateDisplaySettings B4 _HeaderLocationLeft {_HeaderLocationLeft} _HeaderLocationTop {_HeaderLocationTop}", 28, 20);
+/*		WriteLineToPoint($"updateDisplaySettings B4 _HeaderLocationLeft {_HeaderLocationLeft} _HeaderLocationTop {_HeaderLocationTop}", 28, 20);
 		WriteLineToPoint($"updateDisplaySettings B4 _ErrorLocationLeft {_ErrorLocationLeft} _ErrorLocationTop {_ErrorLocationTop}", 29, 21);
 
 		WriteLineToPoint($"updateDisplaySettings B4 _BattleShipLocationLeft {_BattleShipLocationLeft} _BattleShipLocationTop {_BattleShipLocationTop}", 30, 22);
 		WriteLineToPoint($"updateDisplaySettings B4 _InfoLocationLeft {_InfoLocationLeft} _InfoLocationTop {_InfoLocationTop}", 31, 23);
-
+*/
 		_ErrorLocationLeft = _BattleShipLocationLeft + _BattleShipGridWidth + 5;
 		_ErrorLocationTop = _BattleShipLocationTop + _HeaderLocationTop;
 
 		_InfoLocationLeft = _BattleShipLocationLeft + 3;
 		_InfoLocationTop = _BattleShipLocationTop + _BattleShipGridHeight + 5;
 
-		WriteLineToPoint($"updateDisplaySettings C5 _HeaderLocationLeft {_HeaderLocationLeft} _HeaderLocationTop {_HeaderLocationTop}", 33, 25);
+/*		WriteLineToPoint($"updateDisplaySettings C5 _HeaderLocationLeft {_HeaderLocationLeft} _HeaderLocationTop {_HeaderLocationTop}", 33, 25);
 		WriteLineToPoint($"updateDisplaySettings C5 _ErrorLocationLeft {_ErrorLocationLeft} _ErrorLocationTop {_ErrorLocationTop}", 34, 26);
 
 		WriteLineToPoint($"updateDisplaySettings C5 _BattleShipLocationLeft {_BattleShipLocationLeft} _BattleShipLocationTop {_BattleShipLocationTop}", 35, 27);
 		WriteLineToPoint($"updateDisplaySettings C5 _InfoLocationLeft {_InfoLocationLeft} _InfoLocationTop {_InfoLocationTop}", 36, 28);
-
+*/
 	}
 
 	public void setGridLocation(int battleshiplocationleft, int battleshiplocationtop) {

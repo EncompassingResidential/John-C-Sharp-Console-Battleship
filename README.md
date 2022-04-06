@@ -44,4 +44,11 @@ Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName
 
 ### C# resources used
 
+[Learning a LOT of the basics of C##](https://www.codecademy.com/courses/learn-c-sharp/lessons/csharp-inheritance/exercises/intro-inheritance)
 https://aka.ms/new-console-template
+[Checking for null from ReadLine](https://stackoverflow.com/questions/70291276/converting-null-literal-for-console-readline-for-string-input)
+https://www.tutlane.com/tutorial/csharp/csharp-switch-case-statement-with-examples
+https://www.csharp-examples.net/switch/
+https://www.delftstack.com/howto/csharp/multiple-case-switch-in-csharp/
+https://www.educba.com/2d-arrays-in-c-sharp/
+https://www.programmersranch.com/2013/05/c-ascii-art-game-part-1.html

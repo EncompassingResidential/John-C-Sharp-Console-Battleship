@@ -5,21 +5,22 @@
     {
         static void Main(string[] args)
         {
-            // This creates class, but setGridLocations 
+     
             BattleShipDisplay battleShipDisplay = new BattleShipDisplay();
 
             int left = 5;
             int top = 11;
 
-            battleShipDisplay.WriteLineToPoint("Calling battleShipDisplay.setGridLocation(15, 21)", 30, 3);
+            // battleShipDisplay.WriteLineToPoint("Calling battleShipDisplay.setGridLocation(15, 21)", 30, 3);
             battleShipDisplay.setGridLocation(15, 21);
-            battleShipDisplay.WriteLineToPoint("Done with battleShipDisplay.setGridLocation(15, 21)", 30, 4);
+            // battleShipDisplay.WriteLineToPoint("Done with battleShipDisplay.setGridLocation(15, 21)", 30, 4);
 
             battleShipDisplay.WriteStringLine("Battleship has been hidden by CPU!");
 
             battleShipDisplay.WriteString("Type Your Name In : ");
 
             battleShipDisplay.ReadLineFromActor();
+            
             var name = battleShipDisplay.GetLineFromActor();
 
             char PlayerRow = 'z';
