@@ -59,3 +59,6 @@ https://www.delftstack.com/howto/csharp/multiple-case-switch-in-csharp/
 https://www.educba.com/2d-arrays-in-c-sharp/
 
 https://www.programmersranch.com/2013/05/c-ascii-art-game-part-1.html
+
+[For PowerShell checking if PowerShell (or script) is currently running with "Administor" privileges](https://serverfault.com/questions/95431/in-a-powershell-script-how-can-i-check-if-im-running-with-administrator-privil):
+(New-Object System.Security.Principal.WindowsPrincipal([System.Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([System.Security.Principal.WindowsBuiltInRole]::Administrator)

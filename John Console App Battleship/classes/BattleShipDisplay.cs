@@ -19,6 +19,8 @@ public class BattleShipDisplay
 
 	private int _HeaderLocationLeft = 0;
 	private int _HeaderLocationTop  = 0;
+	private int _HeaderLocationWidth  = 0;
+	private int _HeaderLocationHeight = 0;
 
 	public BattleShipDisplay()
 	{
@@ -33,6 +35,8 @@ public class BattleShipDisplay
 
 		_HeaderLocationLeft = 5;
 		_HeaderLocationTop  = 2;
+		_HeaderLocationWidth  = 25;
+		_HeaderLocationHeight =  2;
 
 		_ErrorLocationLeft = 51;
 		_ErrorLocationTop = 23;
@@ -44,24 +48,24 @@ public class BattleShipDisplay
 	}
 
 	private void updateDisplaySettings() {
-/*		WriteLineToPoint($"updateDisplaySettings B4 _HeaderLocationLeft {_HeaderLocationLeft} _HeaderLocationTop {_HeaderLocationTop}", 28, 20);
-		WriteLineToPoint($"updateDisplaySettings B4 _ErrorLocationLeft {_ErrorLocationLeft} _ErrorLocationTop {_ErrorLocationTop}", 29, 21);
+		/*		WriteLineToPoint($"updateDisplaySettings B4 _HeaderLocationLeft {GetHeaderLeft()} _HeaderLocationTop {_HeaderLocationTop}", 28, 20);
+				WriteLineToPoint($"updateDisplaySettings B4 _ErrorLocationLeft {_ErrorLocationLeft} _ErrorLocationTop {_ErrorLocationTop}", 29, 21);
 
-		WriteLineToPoint($"updateDisplaySettings B4 _BattleShipLocationLeft {_BattleShipLocationLeft} _BattleShipLocationTop {_BattleShipLocationTop}", 30, 22);
-		WriteLineToPoint($"updateDisplaySettings B4 _InfoLocationLeft {_InfoLocationLeft} _InfoLocationTop {_InfoLocationTop}", 31, 23);
-*/
-		_ErrorLocationLeft = _BattleShipLocationLeft + _BattleShipGridWidth + 5;
-		_ErrorLocationTop = _BattleShipLocationTop + _HeaderLocationTop;
+				WriteLineToPoint($"updateDisplaySettings B4 _BattleShipLocationLeft {GetGridLeft()} _BattleShipLocationTop {GetGridTop()}", 30, 22);
+				WriteLineToPoint($"updateDisplaySettings B4 _InfoLocationLeft {_InfoLocationLeft} _InfoLocationTop {_InfoLocationTop}", 31, 23);
+		*/
+		_ErrorLocationLeft = GetGridLeft()     + GetGridWidth() + 5;
+		_ErrorLocationTop  = GetGridTop();
 
-		_InfoLocationLeft = _BattleShipLocationLeft + 3;
-		_InfoLocationTop = _BattleShipLocationTop + _BattleShipGridHeight + 5;
+		_InfoLocationLeft = GetGridLeft() + 3;
+		_InfoLocationTop  = GetGridTop()  + GetGridHeight() + 5;
 
-/*		WriteLineToPoint($"updateDisplaySettings C5 _HeaderLocationLeft {_HeaderLocationLeft} _HeaderLocationTop {_HeaderLocationTop}", 33, 25);
-		WriteLineToPoint($"updateDisplaySettings C5 _ErrorLocationLeft {_ErrorLocationLeft} _ErrorLocationTop {_ErrorLocationTop}", 34, 26);
+		/*		WriteLineToPoint($"updateDisplaySettings C5 _HeaderLocationLeft {GetHeaderLeft()} _HeaderLocationTop {_HeaderLocationTop}", 33, 25);
+				WriteLineToPoint($"updateDisplaySettings C5 _ErrorLocationLeft {_ErrorLocationLeft} _ErrorLocationTop {_ErrorLocationTop}", 34, 26);
 
-		WriteLineToPoint($"updateDisplaySettings C5 _BattleShipLocationLeft {_BattleShipLocationLeft} _BattleShipLocationTop {_BattleShipLocationTop}", 35, 27);
-		WriteLineToPoint($"updateDisplaySettings C5 _InfoLocationLeft {_InfoLocationLeft} _InfoLocationTop {_InfoLocationTop}", 36, 28);
-*/
+				WriteLineToPoint($"updateDisplaySettings C5 _BattleShipLocationLeft {GetGridLeft()} _BattleShipLocationTop {GetGridTop()}", 35, 27);
+				WriteLineToPoint($"updateDisplaySettings C5 _InfoLocationLeft {_InfoLocationLeft} _InfoLocationTop {_InfoLocationTop}", 36, 28);
+		*/
 	}
 
 	public void setGridLocation(int battleshiplocationleft, int battleshiplocationtop) {
@@ -102,10 +106,43 @@ public class BattleShipDisplay
 		}
 	}
 
+	public int GetGridLeft() {
+		return _BattleShipLocationLeft;
+	}
+
+	public int GetGridTop() {
+		return _BattleShipLocationTop;
+	}
+
+	public int GetGridHeight() {
+		return _BattleShipGridHeight;
+	}
+
+	public int GetGridWidth() {
+		return _BattleShipGridWidth;
+	}
+
+
+	public int GetHeaderLeft() {
+		return _HeaderLocationLeft;
+	}
+
+	public int GetHeaderTop() {
+		return _HeaderLocationTop;
+	}
+
+	public int GetHeaderHeight() {
+		return _HeaderLocationHeight;
+	}
+
+	public int GetHeaderWidth() {
+		return _HeaderLocationWidth;
+	}
+
 	public void WriteInformationLine(string stringToPrint) {
 		/*
-		 * 		_InfoLocationLeft = _BattleShipLocationLeft + 3;
-		 * 		_InfoLocationTop  = _BattleShipLocationTop + _BattleShipGridHeight + 5;
+		 * 		_InfoLocationLeft = GetGridLeft() + 3;
+		 * 		_InfoLocationTop  = GetGridTop() + GetGridHeight() + 5;
 		 */
 		Console.SetCursorPosition(_InfoLocationLeft + 30, _InfoLocationTop);
 		Console.Write(stringToPrint);
@@ -115,7 +152,7 @@ public class BattleShipDisplay
 		/*
 		 * 		_HeaderLocationLeft && _HeaderLocationTop
 		 */
-		Console.SetCursorPosition(_HeaderLocationLeft + leftOffSet, _HeaderLocationTop + topOffSet);
+		Console.SetCursorPosition(GetHeaderLeft() + leftOffSet, _HeaderLocationTop + topOffSet);
 		Console.Write(stringToPrint);
 	}
 

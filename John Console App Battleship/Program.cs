@@ -8,9 +8,6 @@
      
             BattleShipDisplay battleShipDisplay = new BattleShipDisplay();
 
-            int left = 5;
-            int top = 11;
-
             // battleShipDisplay.WriteLineToPoint("Calling battleShipDisplay.setGridLocation(15, 21)", 30, 3);
             battleShipDisplay.setGridLocation(15, 21);
             // battleShipDisplay.WriteLineToPoint("Done with battleShipDisplay.setGridLocation(15, 21)", 30, 4);
@@ -46,48 +43,42 @@
 
                 battleShipDisplay.WriteHeaderLine("Press 'q' or 'Q' to exit the process...", 0, 6);
 
-                Console.SetCursorPosition(left, top - 1);
-                Console.Write("1 2 3 4 5 6 7 8 9 10");
+                battleShipDisplay.WriteHeaderLine("1 2 3 4 5 6 7 8 9 10", battleShipDisplay.GetHeaderLeft(), battleShipDisplay.GetHeaderTop());
 
-                // left 5, top 10
+                // battleShipDisplay.GetGridLeft() 5, battleShipDisplay.GetGridTop() 10
                 // y is 10; 10 < 10 + 10; 10++
                 // y is 11; 10 < 20; 10++
-                for (int y = top; y < 10 + top; y++)
+                for (int y = battleShipDisplay.GetGridTop(); y < 10 + battleShipDisplay.GetGridTop(); y++)
                 {
-                    // 3, 10
-                    // 3, 11
-                    // 3, 12
-                    Console.SetCursorPosition(left - 3, y);
-
                     // 7 + 8 + 20 = 35 0
                     // 8 + 9 + 20 = 36 1
                     // 9 + 10 + 20 = 37 2
                     // 48 starts 1st row at 0
-                    char rowCharacter = Convert.ToChar(y - top + 65);
-                    Console.Write(rowCharacter);
+                    char rowCharacter = Convert.ToChar(y - battleShipDisplay.GetGridTop() + 65);
+
+                    // 3, 10
+                    // 3, 11
+                    // 3, 12
+                    battleShipDisplay.WriteCharToPoint(rowCharacter, battleShipDisplay.GetGridLeft() - 3, y);
 
                     // 5; 5 < 5 + (10 * 2); 5 += 2
                     // 7; 7 < 5 + (20); 7 += 2
                     // 9; 7 < 25; 9 += 2
                     // 11; 11 < 25; 11 += 2
-                    for (int x = left; x < left + (10 * 2); x += 2)
+                    for (int x = battleShipDisplay.GetGridLeft(); x < battleShipDisplay.GetGridLeft() + (10 * 2); x += 2)
                     {
-                        Console.SetCursorPosition(x, y);
-                        Console.Write(".");
+                        battleShipDisplay.WriteCharToPoint('.', x, y);
                     }
-                    // Console.Write(".");
-                    // Console.SetCursorPosition(left, top);
                 }
 
-                Console.SetCursorPosition(left + 2, top + 15);
-                Console.Write("  You Pressed --> Row {0}  --> Column {1}  ", PlayerRow, PlayerColumn);
+                battleShipDisplay.WriteInformationLine($"  You Pressed --> Row {PlayerRow}  --> Column {PlayerColumn}  ");
 
 
                 // Thread.Sleep(1000);
                 battleShipDisplay.ReadCharFromActor();
                 actorChar = battleShipDisplay.GetCharFromActor();
 
-                battleShipDisplay.WriteCharToPoint(actorChar, left + 25, top + 1);
+                battleShipDisplay.WriteCharToPoint(actorChar, battleShipDisplay.GetGridLeft() + 25, battleShipDisplay.GetGridTop() + 1);
 
                 if (Char.IsNumber(actorChar) == true) {
                     if (actorChar >= 49) {
@@ -99,47 +90,47 @@
                 }
                 else {
                     switch (actorChar) {
-                        case 'Q':
+                        case 'Q' or 'q':
                             runGame = false;
                             break;
 
-                        case 'A':
+                        case 'A' or 'a':
                             PlayerRow = 'A';
                             break;
 
-                        case 'B':
+                        case 'B' or 'b':
                             PlayerRow = 'B';
                             break;
 
-                        case 'C':
+                        case 'C' or 'c':
                             PlayerRow = 'C';
                             break;
 
-                        case 'D':
+                        case 'D' or 'c':
                             PlayerRow = 'D';
                             break;
 
-                        case 'E':
+                        case 'E' or 'e':
                             PlayerRow = 'E';
                             break;
 
-                        case 'F':
+                        case 'F' or 'f':
                             PlayerRow = 'F';
                             break;
 
-                        case 'G':
+                        case 'G' or 'g':
                             PlayerRow = 'G';
                             break;
 
-                        case 'H':
+                        case 'H' or 'h':
                             PlayerRow = 'H';
                             break;
 
-                        case 'I':
+                        case 'I' or 'i':
                             PlayerRow = 'I';
                             break;
 
-                        case 'J':
+                        case 'J' or 'j':
                             PlayerRow = 'J';
                             break;
 
