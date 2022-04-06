@@ -22,16 +22,16 @@ public class BattleShipDisplay
 	private int _HeaderLocationWidth  = 0;
 	private int _HeaderLocationHeight = 0;
 
-	public BattleShipDisplay()
+	public BattleShipDisplay(int numberGridColumns, int numberGridRows)
 	{
-		Console.BackgroundColor = ConsoleColor.DarkGreen;
-		Console.ForegroundColor = ConsoleColor.DarkBlue;
+		Console.BackgroundColor = ConsoleColor.DarkBlue;
+		Console.ForegroundColor = ConsoleColor.DarkGreen;
 
 		_BattleShipLocationLeft = 1;
 		_BattleShipLocationTop  = 1;
 
-		_BattleShipGridWidth  = 10 * 2;
-		_BattleShipGridHeight = 10;
+		_BattleShipGridWidth  = numberGridColumns * 2;
+		_BattleShipGridHeight = numberGridRows;
 
 		_HeaderLocationLeft = 5;
 		_HeaderLocationTop  = 2;
@@ -48,26 +48,30 @@ public class BattleShipDisplay
 	}
 
 	private void updateDisplaySettings() {
-		/*		WriteLineToPoint($"updateDisplaySettings B4 _HeaderLocationLeft {GetHeaderLeft()} _HeaderLocationTop {_HeaderLocationTop}", 28, 20);
-				WriteLineToPoint($"updateDisplaySettings B4 _ErrorLocationLeft {_ErrorLocationLeft} _ErrorLocationTop {_ErrorLocationTop}", 29, 21);
+	/*	WriteLineToPoint($"updateDisplaySettings B4 _HeaderLocationLeft {GetHeaderLeft()} _HeaderLocationTop {GetHeaderTop()}", 28, 20);
+		WriteLineToPoint($"updateDisplaySettings B4 _ErrorLocationLeft {GetErrorLeft()} _ErrorLocationTop {GetErrorTop()}", 29, 21);
 
-				WriteLineToPoint($"updateDisplaySettings B4 _BattleShipLocationLeft {GetGridLeft()} _BattleShipLocationTop {GetGridTop()}", 30, 22);
-				WriteLineToPoint($"updateDisplaySettings B4 _InfoLocationLeft {_InfoLocationLeft} _InfoLocationTop {_InfoLocationTop}", 31, 23);
-		*/
-		_ErrorLocationLeft = GetGridLeft()     + GetGridWidth() + 5;
+		WriteLineToPoint($"updateDisplaySettings B4 _BattleShipLocationLeft {GetGridLeft()} _BattleShipLocationTop {GetGridTop()}", 30, 22);
+		WriteLineToPoint($"updateDisplaySettings B4 _InfoLocationLeft {GetInformationLeft()} _InfoLocationTop {GetInformationTop()}", 31, 23);
+	*/
+		_ErrorLocationLeft = GetGridLeft()     + GetGridWidth() + 1;
 		_ErrorLocationTop  = GetGridTop();
 
 		_InfoLocationLeft = GetGridLeft() + 3;
-		_InfoLocationTop  = GetGridTop()  + GetGridHeight() + 5;
+		_InfoLocationTop  = GetGridTop()  + GetGridHeight() + 3;
 
-		/*		WriteLineToPoint($"updateDisplaySettings C5 _HeaderLocationLeft {GetHeaderLeft()} _HeaderLocationTop {_HeaderLocationTop}", 33, 25);
-				WriteLineToPoint($"updateDisplaySettings C5 _ErrorLocationLeft {_ErrorLocationLeft} _ErrorLocationTop {_ErrorLocationTop}", 34, 26);
+		// _HeaderLocationLeft = GetGridLeft();
+		//	_HeaderLocationTop  = GetGridTop() - 2;
 
-				WriteLineToPoint($"updateDisplaySettings C5 _BattleShipLocationLeft {GetGridLeft()} _BattleShipLocationTop {GetGridTop()}", 35, 27);
-				WriteLineToPoint($"updateDisplaySettings C5 _InfoLocationLeft {_InfoLocationLeft} _InfoLocationTop {_InfoLocationTop}", 36, 28);
-		*/
+		WriteLineToPoint($"updateDisplaySettings C5 _HeaderLocationLeft {GetHeaderLeft()} _HeaderLocationTop {GetHeaderTop()}", 30, 1);
+		WriteLineToPoint($"updateDisplaySettings C5 _ErrorLocationLeft {GetErrorLeft()} _ErrorLocationTop {GetErrorTop()}", 30, 2);
+
+		WriteLineToPoint($"updateDisplaySettings C5 _BattleShipLocationLeft {GetGridLeft()} _BattleShipLocationTop {GetGridTop()}", 30, 4);
+		WriteLineToPoint($"updateDisplaySettings C5 _InfoLocationLeft {GetInformationLeft()} _InfoLocationTop {GetInformationTop()}", 30, 5);
+	
 	}
 
+	// (15, 21)
 	public void setGridLocation(int battleshiplocationleft, int battleshiplocationtop) {
 		_BattleShipLocationLeft = battleshiplocationleft;
 		_BattleShipLocationTop = battleshiplocationtop;
@@ -80,6 +84,12 @@ public class BattleShipDisplay
 		return _ActorInputChar;
 	}
 
+	public void ResetScreen() {
+		Console.Clear();
+
+		Console.BackgroundColor = ConsoleColor.DarkGreen;
+		Console.ForegroundColor = ConsoleColor.DarkBlue;
+	}
 	public void ReadCharFromActor() {
 		ConsoleKeyInfo cKeyInfo;
 
@@ -96,11 +106,11 @@ public class BattleShipDisplay
 		string? inputLine = Console.ReadLine();
 		if (inputLine != null && inputLine != "") {
 			string printThis = $"ReadLineFromActor if (inputLine != null) Actor typed <{inputLine}>";
-			WriteLineToPoint(printThis, _ErrorLocationLeft, _ErrorLocationTop);
+			WriteLineToPoint(printThis, GetErrorLeft(), GetErrorTop());
 			_ActorInputString = inputLine;
 		}
 		else {
-			WriteLineToPoint("ReadLineFromActor is null", _ErrorLocationLeft, _ErrorLocationTop);
+			WriteLineToPoint("ReadLineFromActor is null", GetErrorLeft(), GetErrorTop());
 
 			_ActorInputString = "Player 1";
 		}
@@ -139,20 +149,36 @@ public class BattleShipDisplay
 		return _HeaderLocationWidth;
 	}
 
-	public void WriteInformationLine(string stringToPrint) {
-		/*
-		 * 		_InfoLocationLeft = GetGridLeft() + 3;
-		 * 		_InfoLocationTop  = GetGridTop() + GetGridHeight() + 5;
-		 */
-		Console.SetCursorPosition(_InfoLocationLeft + 30, _InfoLocationTop);
-		Console.Write(stringToPrint);
+	public int GetInformationLeft() {
+		return _InfoLocationLeft;
+	}
+
+	public int GetInformationTop() {
+		return _InfoLocationTop;
+	}
+
+	public int GetErrorLeft() {
+		return _ErrorLocationLeft;
+	}
+
+	public int GetErrorTop() {
+		return _ErrorLocationTop;
 	}
 
 	public void WriteHeaderLine(string stringToPrint, int leftOffSet = 1, int topOffSet = 1) {
 		/*
-		 * 		_HeaderLocationLeft && _HeaderLocationTop
+		 * 		GetHeaderLeft() && GetHeaderTop()
 		 */
-		Console.SetCursorPosition(GetHeaderLeft() + leftOffSet, _HeaderLocationTop + topOffSet);
+		Console.SetCursorPosition(GetHeaderLeft() + leftOffSet, GetHeaderTop() + topOffSet);
+		Console.Write(stringToPrint);
+	}
+	
+	public void WriteInformationLine(string stringToPrint) {
+		/*
+		 * 		GetInformationLeft() = GetGridLeft() + 3;
+		 * 		GetInformationTop()  = GetGridTop() + GetGridHeight() + 5;
+		 */
+		Console.SetCursorPosition(GetInformationLeft(), GetInformationTop());
 		Console.Write(stringToPrint);
 	}
 

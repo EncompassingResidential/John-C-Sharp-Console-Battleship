@@ -5,29 +5,38 @@
     {
         static void Main(string[] args)
         {
-     
-            BattleShipDisplay battleShipDisplay = new BattleShipDisplay();
+
+            BattleShipGrid battleShipGrid = new BattleShipGrid(10, 10);
+
+            BattleShipDisplay battleShipDisplay = new BattleShipDisplay(battleShipGrid.getNumColumns(), battleShipGrid.getNumRows());
 
             // battleShipDisplay.WriteLineToPoint("Calling battleShipDisplay.setGridLocation(15, 21)", 30, 3);
-            battleShipDisplay.setGridLocation(15, 21);
+            
+            battleShipDisplay.setGridLocation(battleShipDisplay.GetHeaderLeft(), battleShipDisplay.GetHeaderTop() + 11);
+
             // battleShipDisplay.WriteLineToPoint("Done with battleShipDisplay.setGridLocation(15, 21)", 30, 4);
 
-            battleShipDisplay.WriteStringLine("Battleship has been hidden by CPU!");
+            battleShipDisplay.WriteStringLine(" ");
+            battleShipDisplay.WriteStringLine(" ");
+            battleShipDisplay.WriteStringLine(" ");
+            battleShipDisplay.WriteStringLine("The Battleship has been hidden behind an invisible cloak by Master CPU!");
+            battleShipDisplay.WriteStringLine(" ");
+            battleShipDisplay.WriteStringLine("     You must find it and sink it...");
+            battleShipDisplay.WriteStringLine(" ");
 
             battleShipDisplay.WriteString("Type Your Name In : ");
 
             battleShipDisplay.ReadLineFromActor();
-            
+
             var name = battleShipDisplay.GetLineFromActor();
+
+            battleShipDisplay.ResetScreen();
 
             char PlayerRow = 'z';
             int PlayerColumn = 0;
             bool runGame = true;
             char actorChar = 'y';
             
-
-            BattleShipGrid battleShipGrid = new BattleShipGrid(10, 10);
-
             string displayString = $"Battleship Start Row {battleShipGrid.BattleShipRowStart}  --> Start Column {battleShipGrid.BattleShipColStart}  ";
             battleShipDisplay.WriteInformationLine(displayString);
 
@@ -35,15 +44,16 @@
             {
                 var currentDate = DateTime.Now;
 
-                battleShipDisplay.WriteHeaderLine($"Hello, {name}, on {currentDate:d} at {currentDate:t}!", 0, 0);
-                battleShipDisplay.WriteHeaderLine("      Battleship        ", 0, 1);
-                battleShipDisplay.WriteHeaderLine("........................", 0, 2);
-                battleShipDisplay.WriteHeaderLine(".......The Ocean........", 0, 3);
-                battleShipDisplay.WriteHeaderLine("........................", 0, 4);
+                battleShipDisplay.WriteHeaderLine("........................", 0, 0);
+                battleShipDisplay.WriteHeaderLine($"Hello, {name}, on {currentDate:d} at {currentDate:t}!", 0, 1);
+                battleShipDisplay.WriteHeaderLine("      Battleship        ", 0, 2);
+                battleShipDisplay.WriteHeaderLine("........................", 0, 3);
+                battleShipDisplay.WriteHeaderLine(".......The Ocean........", 0, 4);
+                battleShipDisplay.WriteHeaderLine("........................", 0, 5);
 
-                battleShipDisplay.WriteHeaderLine("Press 'q' or 'Q' to exit the process...", 0, 6);
+                battleShipDisplay.WriteHeaderLine("Press 'q' or 'Q' to exit the process...", 0, 7);
 
-                battleShipDisplay.WriteHeaderLine("1 2 3 4 5 6 7 8 9 10", battleShipDisplay.GetHeaderLeft(), battleShipDisplay.GetHeaderTop());
+                battleShipDisplay.WriteLineToPoint("1 2 3 4 5 6 7 8 9 10", battleShipDisplay.GetGridLeft(), battleShipDisplay.GetGridTop() - 2);
 
                 // battleShipDisplay.GetGridLeft() 5, battleShipDisplay.GetGridTop() 10
                 // y is 10; 10 < 10 + 10; 10++
@@ -72,13 +82,16 @@
                 }
 
                 battleShipDisplay.WriteInformationLine($"  You Pressed --> Row {PlayerRow}  --> Column {PlayerColumn}  ");
+                
+                battleShipDisplay.WriteLineToPoint($"updateDisplaySettings C5 _HeaderLocationLeft {battleShipDisplay.GetHeaderLeft()} _HeaderLocationTop {battleShipDisplay.GetHeaderTop()}", battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop());
+                battleShipDisplay.WriteLineToPoint($"updateDisplaySettings C5 _ErrorLocationLeft {battleShipDisplay.GetErrorLeft()} _ErrorLocationTop {battleShipDisplay.GetErrorTop()}", battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() + 1);
 
+                battleShipDisplay.WriteLineToPoint($"updateDisplaySettings C5 _BattleShipLocationLeft {battleShipDisplay.GetGridLeft()} _BattleShipLocationTop {battleShipDisplay.GetGridTop()}", battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() + 3);
+                battleShipDisplay.WriteLineToPoint($"updateDisplaySettings C5 _InfoLocationLeft {battleShipDisplay.GetInformationLeft()} _InfoLocationTop {battleShipDisplay.GetInformationTop()}", battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() + 4);
 
                 // Thread.Sleep(1000);
                 battleShipDisplay.ReadCharFromActor();
                 actorChar = battleShipDisplay.GetCharFromActor();
-
-                battleShipDisplay.WriteCharToPoint(actorChar, battleShipDisplay.GetGridLeft() + 25, battleShipDisplay.GetGridTop() + 1);
 
                 if (Char.IsNumber(actorChar) == true) {
                     if (actorChar >= 49) {
