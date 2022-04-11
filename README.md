@@ -1,8 +1,14 @@
-﻿John Console App Battleship
+﻿# John Console App Battleship
 
 C# (C Sharp) Console App.  No web stuff, gasp.  Seriously, only ASCII characters.
 
 It is run from the Command Line Interface (CLI) or double clicked from mouse.
+
+[You can find John Ritz's CV Resume here at Linked In www](https://www.linkedin.com/in/johntritz/)
+
+[Click here for my personal Life Coach website, specialty is Addiction after 5 years of addiction counseling in Oregon from 2016 to 2021](https://www.soberjourneycopilot.com/)
+
+## When the App comes up
 
 ### In PowerShell how to run on command line:
 
