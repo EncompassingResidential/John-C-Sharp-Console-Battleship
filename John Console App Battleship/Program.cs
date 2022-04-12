@@ -92,6 +92,14 @@ class Program
                             battleShipDisplay.WriteCharToGrid('.', column, row);
                         }
 
+                        // TESTING
+                        if (battleShipGrid.isShipLocatedHere(column, row)) {
+                            battleShipDisplay.WriteCharToPoint('B', battleShipDisplay.GetErrorLeft() + (column * 2) + 10, battleShipDisplay.GetErrorTop() + row);
+                        }
+                        else {
+                            battleShipDisplay.WriteCharToPoint('_', battleShipDisplay.GetErrorLeft() + (column * 2) + 10, battleShipDisplay.GetErrorTop() + row);
+                        }
+
                     }  // for column
                 }  // for row
 
