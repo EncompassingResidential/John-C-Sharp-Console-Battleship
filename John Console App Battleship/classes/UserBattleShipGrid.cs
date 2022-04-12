@@ -73,7 +73,7 @@ public class UserBattleShipGrid {
     public void markUserTarget() {
 
         int indexFound = _RowNumbers.FindIndex(e => e == PlayerRow);
-        _targetLocations[indexFound, PlayerColumn] = getMissChar();
+        _targetLocations[indexFound, PlayerColumn - 1] = getMissChar();
 
 /*        for (int row = 0; row < getNumberRows(); row++) {
             for (int col = 0; col < getNumberColumns(); col++) {

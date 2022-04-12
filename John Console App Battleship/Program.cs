@@ -91,8 +91,9 @@ class Program
                         else {
                             battleShipDisplay.WriteCharToGrid('.', column, row);
                         }
-                    }
-                }
+
+                    }  // for column
+                }  // for row
 
                 battleShipDisplay.WriteInformationLine($"  You Pressed --> Row {userBattleShipGrid.PlayerRow}  --> Column {userBattleShipGrid.PlayerColumn}  ");
 
@@ -117,6 +118,7 @@ class Program
                     // battleShipDisplay.WriteLineToPoint($"", battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() + 6);
                 }
                 else {
+                    // Could use a List to replace this Switch Case
                     switch (actorChar) {
                         case 'Q' or 'q':
                             runGame = false;
@@ -134,7 +136,7 @@ class Program
                             userBattleShipGrid.updatePlayerRow('C');
                             break;
 
-                        case 'D' or 'c':
+                        case 'D' or 'd':
                             userBattleShipGrid.updatePlayerRow('D');
                             break;
 
