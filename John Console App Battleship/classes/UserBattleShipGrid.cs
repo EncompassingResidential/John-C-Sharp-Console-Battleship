@@ -26,7 +26,7 @@ public class UserBattleShipGrid {
         _RowNumbers.Add('I');
         _RowNumbers.Add('J');
 
-        _targetLocations = new char[_numberCols, _numberCols];
+        _targetLocations = new char[getNumberRows(), getNumberColumns()];
 
         for (int row = 0; row < getNumberRows(); row++) {
             for (int col = 0; col < getNumberColumns(); col++) {

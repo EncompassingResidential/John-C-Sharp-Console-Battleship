@@ -9,11 +9,11 @@ class Program
 
             BattleShipInput battleShipInput = new BattleShipInput();
 
-            BattleShipDisplay battleShipDisplay = new BattleShipDisplay(battleShipGrid.getNumColumns(),
-                                                                        battleShipGrid.getNumRows());
+            BattleShipDisplay battleShipDisplay = new BattleShipDisplay(battleShipGrid.getNumberColumns(),
+                                                                        battleShipGrid.getNumberRows());
 
-            UserBattleShipGrid userBattleShipGrid = new UserBattleShipGrid(battleShipGrid.getNumColumns(), 
-                                                                            battleShipGrid.getNumRows());
+            UserBattleShipGrid userBattleShipGrid = new UserBattleShipGrid(battleShipGrid.getNumberColumns(), 
+                                                                            battleShipGrid.getNumberRows());
 
             // battleShipDisplay.WriteLineToPoint("Calling battleShipDisplay.setGridLocation(15, 21)", 30, 3);
             
@@ -63,7 +63,7 @@ class Program
                 // battleShipDisplay.GetGridLeft() 5, battleShipDisplay.GetGridTop() 10
                 // y is 10; 10 < 10 + 10; 10++
                 // y is 11; 10 < 20; 10++
-                for (int row = 0; row < battleShipGrid.getNumRows(); row++) {
+                for (int row = 0; row < battleShipGrid.getNumberRows(); row++) {
                     // 7 + 8 + 20 = 35 0
                     // 8 + 9 + 20 = 36 1
                     // 9 + 10 + 20 = 37 2
@@ -79,7 +79,7 @@ class Program
                     // 7; 7 < 5 + (20); 7 += 2
                     // 9; 7 < 25; 9 += 2
                     // 11; 11 < 25; 11 += 2
-                    for (int column = 0; column < battleShipGrid.getNumColumns(); column++ ) {
+                    for (int column = 0; column < battleShipGrid.getNumberColumns(); column++ ) {
                         if (userBattleShipGrid.getTargetLocation(column, row) == userBattleShipGrid.getMissChar() && battleShipGrid.isShipLocatedHere(column, row)) {
                             battleShipDisplay.WriteCharToGrid('X', column, row);
                             userBattleShipGrid.updatePlayerFires(false);

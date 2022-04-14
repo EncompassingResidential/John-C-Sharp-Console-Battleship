@@ -55,12 +55,13 @@ public class BattleShipDisplay
 		// _HeaderLocationLeft = GetGridLeft();
 		//	_HeaderLocationTop  = GetGridTop() - 2;
 
+		/*
 		WriteLineToPoint($"updateDisplaySettings C5 _HeaderLocationLeft {GetHeaderLeft()} _HeaderLocationTop {GetHeaderTop()}", 30, 1);
 		WriteLineToPoint($"updateDisplaySettings C5 _ErrorLocationLeft {GetErrorLeft()} _ErrorLocationTop {GetErrorTop()}", 30, 2);
 
 		WriteLineToPoint($"updateDisplaySettings C5 _BattleShipLocationLeft {GetGridLeft()} _BattleShipLocationTop {GetGridTop()}", 30, 4);
 		WriteLineToPoint($"updateDisplaySettings C5 _InfoLocationLeft {GetInformationLeft()} _InfoLocationTop {GetInformationTop()}", 30, 5);
-	
+		*/
 	}
 
 	// (15, 21)
