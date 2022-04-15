@@ -69,16 +69,17 @@ public class BattleShipGrid {
         int directionCol = -1;
         int DirectionOn = 1;
 
+        // 1 to 8
+        int matrixDirection = rand.Next(1, directionsCanUseCount + 1);
+
         if (directionsCanUseCount > 0) {
 
-            // 1 to 8
-            int matrixRow = rand.Next(1, directionsCanUseCount + 1);
 
             for (int row = 0; row < getNumberRows(); row++) {
 
                 if (   (_shipPositions[row, 0] >= 0 && _shipPositions[row, 0] < getNumberRows())
                     && (_shipPositions[row, 1] >= 0 && _shipPositions[row, 1] < getNumberColumns())) {
-                    if (DirectionOn == matrixRow) {
+                    if (DirectionOn == matrixDirection) {
                         directionRow = _shipPositions[row, 0];
                         directionCol = _shipPositions[row, 1];
                         break;
@@ -101,10 +102,10 @@ public class BattleShipGrid {
         // Then fill in ship grid
 
         int rowChangeNumber = 0;
-        if (_shipPositions[DirectionOn - 1, 0] < getBattleShipRowStart) {
+        if (directionRow < getBattleShipRowStart) {
             rowChangeNumber = -1;
         }
-        else if (_shipPositions[DirectionOn - 1, 0] > getBattleShipRowStart) {
+        else if (directionRow > getBattleShipRowStart) {
             rowChangeNumber = 1;
         }
         else {
@@ -112,10 +113,10 @@ public class BattleShipGrid {
         }
 
         int columnChangeNumber = 0;
-        if (_shipPositions[DirectionOn - 1, 1] < getBattleShipColStart) {
+        if (directionCol < getBattleShipColStart) {
             columnChangeNumber = -1;
         }
-        else if (_shipPositions[DirectionOn - 1, 1] > getBattleShipColStart) {
+        else if (directionCol > getBattleShipColStart) {
             columnChangeNumber = 1;
         }
         else {
@@ -175,28 +176,28 @@ public class BattleShipGrid {
         int positionLeftEnd = getBattleShipColStart - (_battleShipLength - 1);
 
 
-        // -4 to 5
+        // Range allowed -4 to 5
         int positionUpRightRowEnd = positionUpEnd;
 
-        // 4 to 13
+        // Range allowed 4 to 13
         int positionUpRightColEnd = positionRightEnd;
 
-        // 4 to 13
+        // Range allowed 4 to 13
         int positionDownRightRowEnd = positionDownEnd;
 
-        // 4 to 13
+        // Range allowed 4 to 13
         int positionDownRightColEnd = positionRightEnd;
 
-        // -4 to 5
+        // Range allowed -4 to 5
         int positionUpLeftRowEnd = positionUpEnd;
 
-        // -4 to 5
+        // Range allowed -4 to 5
         int positionUpLeftColEnd = positionLeftEnd;
 
-        // 4 to 13
+        // Range allowed 4 to 13
         int positionDownLeftRowEnd = positionDownEnd;
 
-        // -4 to 5
+        // Range allowed -4 to 5
         int positionDownLeftColEnd = positionLeftEnd;
 
         // if getBattleShipRowStart = 0 && getBattleShipColStart = 0
