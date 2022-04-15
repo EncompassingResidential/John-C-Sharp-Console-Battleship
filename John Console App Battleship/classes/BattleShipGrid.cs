@@ -70,14 +70,15 @@ public class BattleShipGrid {
         int DirectionOn = 1;
 
         if (directionsCanUseCount > 0) {
-            // 0, 1, or 2
-            int matrixRow = rand.Next(0, directionsCanUseCount);
+
+            // 1 to 8
+            int matrixRow = rand.Next(1, directionsCanUseCount + 1);
 
             for (int row = 0; row < getNumberRows(); row++) {
 
                 if (   (_shipPositions[row, 0] >= 0 && _shipPositions[row, 0] < getNumberRows())
                     && (_shipPositions[row, 1] >= 0 && _shipPositions[row, 1] < getNumberColumns())) {
-                    if (DirectionOn == directionsCanUseCount) {
+                    if (DirectionOn == matrixRow) {
                         directionRow = _shipPositions[row, 0];
                         directionCol = _shipPositions[row, 1];
                         break;
@@ -86,9 +87,9 @@ public class BattleShipGrid {
                         DirectionOn++;
                     }
                 }
-                else {
+                /* else {
                     DirectionOn++;
-                }
+                } */
             } // for
 
         }
@@ -121,32 +122,22 @@ public class BattleShipGrid {
             columnChangeNumber = 0;
         }
 
-        _shipLocations[getBattleShipRowStart + rowChangeNumber++, 
-                        getBattleShipColStart + columnChangeNumber++] = 'B';
-        _shipLocations[getBattleShipRowStart + rowChangeNumber++,
-                        getBattleShipColStart + columnChangeNumber++] = 'B';
-        _shipLocations[getBattleShipRowStart + rowChangeNumber++,
-                        getBattleShipColStart + columnChangeNumber++] = 'B';
-        _shipLocations[getBattleShipRowStart + rowChangeNumber,
-                        getBattleShipColStart + columnChangeNumber] = 'B';
+        // 5 + 0 = 5 -> 5 + 0 = 5
+        // 5 + 1 = 6 -> 6 + 1 = 7
+        // 5 - 1 = 4 -> 4 - 1 = 3
+        int rowLocation = getBattleShipRowStart + rowChangeNumber;
+        int colLocation = getBattleShipColStart + columnChangeNumber;
+        _shipLocations[rowLocation, colLocation] = 'B';
+        
+        /* rowLocation ;
+        colLocation ; */
+        _shipLocations[rowLocation += rowChangeNumber, colLocation += columnChangeNumber] = 'B';
+        
+        _shipLocations[rowLocation += rowChangeNumber, colLocation += columnChangeNumber] = 'B';
 
-        /* D (3), 7 (6)
-         D (3) + { 0, 1, 2 } - 1
-            3 + 0 - 1 = 2 C
-            3 + 1 - 1 = 3 D
-            3 + 2 - 1 = 4 E
-        int nextRowToTry = getBattleShipRowStart + matrixRow - 1;
-        */
+        _shipLocations[rowLocation += rowChangeNumber, colLocation += columnChangeNumber] = 'B';
 
-        /* D (3), 7 (6)
-         7 (6) + { 0, 1, 2 } - 1
-            6 + 0 - 1 = 5
-            6 + 1 - 1 = 6
-            6 + 2 - 1 = 7
-        int nextColumnToTry = getBattleShipColStart + matrixCol - 1;
-        */
-
-    }
+    } // resetShipLocation()
 
     private int[,] whichDirectionsCanShipGo(int shipRowStart, int shipColStart) {
 
