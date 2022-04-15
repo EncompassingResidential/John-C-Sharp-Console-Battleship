@@ -77,7 +77,9 @@ class Program
                     // 9; 7 < 25; 9 += 2
                     // 11; 11 < 25; 11 += 2
                     for (int column = 0; column < battleShipGrid.getNumberColumns(); column++ ) {
-                        if (userBattleShipGrid.getTargetLocation(column, row) == userBattleShipGrid.getMissChar() && battleShipGrid.isShipLocatedHere(column, row)) {
+                        if (userBattleShipGrid.getTargetLocation(column, row) == userBattleShipGrid.getMissChar() 
+                            && battleShipGrid.isShipLocatedHere(column, row)) {
+
                             battleShipDisplay.WriteCharToGrid('X', column, row);
                             userBattleShipGrid.updatePlayerFires(false);
                         }
@@ -100,6 +102,25 @@ class Program
                     }  // for column
                 }  // for row
 
+                battleShipDisplay.WriteStringToPoint("Press Row Letter on Keyboard to choose which row to target",
+                                        battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() - 9);
+                battleShipDisplay.WriteStringToPoint("Press Column number on Keyboard to choose which column to target",
+                                                        battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() - 8);
+                battleShipDisplay.WriteStringToPoint("Where the Row and Column cross on the grid",
+                                                        battleShipDisplay.GetErrorLeft() + 4, battleShipDisplay.GetErrorTop() - 6);
+                battleShipDisplay.WriteStringToPoint("is where you are targeting your Dove of Love.",
+                                                       battleShipDisplay.GetErrorLeft() + 4, battleShipDisplay.GetErrorTop() - 5);
+
+                battleShipDisplay.WriteStringToPoint("Grid Legend",
+                        battleShipDisplay.GetGridLeft() - 16, battleShipDisplay.GetGridTop() + 1);
+                battleShipDisplay.WriteStringToPoint(".  Unknown",
+                        battleShipDisplay.GetGridLeft() - 15, battleShipDisplay.GetGridTop() + 3);
+                battleShipDisplay.WriteStringToPoint("O  missed",
+                        battleShipDisplay.GetGridLeft() - 15, battleShipDisplay.GetGridTop() + 5);
+                battleShipDisplay.WriteStringToPoint("X  Strike",
+                        battleShipDisplay.GetGridLeft() - 15, battleShipDisplay.GetGridTop() + 7);
+
+
                 string actorRowString    = (userBattleShipGrid.PlayerRow == '_') ? "Type in You Row Letter" : userBattleShipGrid.PlayerRow.ToString() ;
                 string actorColumnString = (userBattleShipGrid.PlayerColumn == -99) ? "Type in Your Column number, for 10 type in a 0 (zero)" : userBattleShipGrid.PlayerColumn.ToString();
 
@@ -109,15 +130,6 @@ class Program
                                                         battleShipDisplay.GetInformationLeft(), battleShipDisplay.GetInformationTop() - 1);
                 battleShipDisplay.WriteStringToPoint("  ", battleShipDisplay.GetInformationLeft() + 1, battleShipDisplay.GetInformationTop() + 1);
                 battleShipDisplay.WriteStringToPoint("          Press the Enter / Return key to fire a shot at the MCU's Battleship.", battleShipDisplay.GetInformationLeft() - 5, battleShipDisplay.GetInformationTop() + 1);
-
-                battleShipDisplay.WriteStringToPoint("Press Row Letter on Keyboard to choose which row to target", 
-                                                        battleShipDisplay.GetErrorLeft() , battleShipDisplay.GetErrorTop() - 9);
-                battleShipDisplay.WriteStringToPoint("Press Column number on Keyboard to choose which column to target",
-                                                        battleShipDisplay.GetErrorLeft() , battleShipDisplay.GetErrorTop() - 8);
-                battleShipDisplay.WriteStringToPoint("Where the Row and Column cross on the grid", 
-                                                        battleShipDisplay.GetErrorLeft() + 4, battleShipDisplay.GetErrorTop() - 6);
-                battleShipDisplay.WriteStringToPoint("is where you are targeting your Dove of Love.",
-                                                        battleShipDisplay.GetErrorLeft() + 4, battleShipDisplay.GetErrorTop() - 5);
 
                 battleShipInput.ReadCharFromActor();
                 
@@ -194,9 +206,8 @@ class Program
 
                 if (userBattleShipGrid.PlayerFires) {
                     userBattleShipGrid.markUserTarget();
-                    battleShipDisplay.WriteStringToPoint($"    userBattleShipGrid.PlayerFires with {userBattleShipGrid.PlayerRow}", battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() + 6);
+                    // battleShipDisplay.WriteStringToPoint($"    userBattleShipGrid.PlayerFires with {userBattleShipGrid.PlayerRow}", battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() + 6);
                 }
-
 
             } // while
 
