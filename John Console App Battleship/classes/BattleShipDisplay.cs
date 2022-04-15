@@ -56,11 +56,11 @@ public class BattleShipDisplay
 		//	_HeaderLocationTop  = GetGridTop() - 2;
 
 		/*
-		WriteLineToPoint($"updateDisplaySettings C5 _HeaderLocationLeft {GetHeaderLeft()} _HeaderLocationTop {GetHeaderTop()}", 30, 1);
-		WriteLineToPoint($"updateDisplaySettings C5 _ErrorLocationLeft {GetErrorLeft()} _ErrorLocationTop {GetErrorTop()}", 30, 2);
+		WriteStringToPoint($"updateDisplaySettings C5 _HeaderLocationLeft {GetHeaderLeft()} _HeaderLocationTop {GetHeaderTop()}", 30, 1);
+		WriteStringToPoint($"updateDisplaySettings C5 _ErrorLocationLeft {GetErrorLeft()} _ErrorLocationTop {GetErrorTop()}", 30, 2);
 
-		WriteLineToPoint($"updateDisplaySettings C5 _BattleShipLocationLeft {GetGridLeft()} _BattleShipLocationTop {GetGridTop()}", 30, 4);
-		WriteLineToPoint($"updateDisplaySettings C5 _InfoLocationLeft {GetInformationLeft()} _InfoLocationTop {GetInformationTop()}", 30, 5);
+		WriteStringToPoint($"updateDisplaySettings C5 _BattleShipLocationLeft {GetGridLeft()} _BattleShipLocationTop {GetGridTop()}", 30, 4);
+		WriteStringToPoint($"updateDisplaySettings C5 _InfoLocationLeft {GetInformationLeft()} _InfoLocationTop {GetInformationTop()}", 30, 5);
 		*/
 	}
 
@@ -168,7 +168,7 @@ public class BattleShipDisplay
 		Console.Write(charToWrite);
 	}
 
-	public void WriteLineToPoint(string stringToWrite, int locationLeft, int locationTop) {
+	public void WriteStringToPoint(string stringToWrite, int locationLeft, int locationTop) {
 		Console.SetCursorPosition(locationLeft, locationTop);
 		Console.Write(stringToWrite);
 	}

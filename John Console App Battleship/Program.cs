@@ -15,11 +15,11 @@ class Program
             UserBattleShipGrid userBattleShipGrid = new UserBattleShipGrid(battleShipGrid.getNumberColumns(), 
                                                                             battleShipGrid.getNumberRows());
 
-            // battleShipDisplay.WriteLineToPoint("Calling battleShipDisplay.setGridLocation(15, 21)", 30, 3);
+            // battleShipDisplay.WriteStringToPoint("Calling battleShipDisplay.setGridLocation(15, 21)", 30, 3);
             
             battleShipDisplay.setGridLocation(battleShipDisplay.GetHeaderLeft(), battleShipDisplay.GetHeaderTop() + 11);
 
-            // battleShipDisplay.WriteLineToPoint("Done with battleShipDisplay.setGridLocation(15, 21)", 30, 4);
+            // battleShipDisplay.WriteStringToPoint("Done with battleShipDisplay.setGridLocation(15, 21)", 30, 4);
 
             battleShipDisplay.WriteStringLine(" ");
             battleShipDisplay.WriteStringLine(" ");
@@ -58,7 +58,7 @@ class Program
 
                 battleShipDisplay.WriteHeaderLine("Press 'q' or 'Q' to exit the process...", 0, 7);
 
-                battleShipDisplay.WriteLineToPoint("1 2 3 4 5 6 7 8 9 10", battleShipDisplay.GetGridLeft(), battleShipDisplay.GetGridTop() - 2);
+                battleShipDisplay.WriteStringToPoint("1 2 3 4 5 6 7 8 9 10", battleShipDisplay.GetGridLeft(), battleShipDisplay.GetGridTop() - 2);
 
                 // battleShipDisplay.GetGridLeft() 5, battleShipDisplay.GetGridTop() 10
                 // y is 10; 10 < 10 + 10; 10++
@@ -103,7 +103,21 @@ class Program
                     }  // for column
                 }  // for row
 
-                battleShipDisplay.WriteInformationLine($"  You Pressed --> Row {userBattleShipGrid.PlayerRow}  --> Column {userBattleShipGrid.PlayerColumn}  ");
+                battleShipDisplay.WriteStringToPoint($"  You Pressed --> Row    {userBattleShipGrid.PlayerRow}",
+                                                        battleShipDisplay.GetInformationLeft(), battleShipDisplay.GetInformationTop() - 2 );
+                battleShipDisplay.WriteStringToPoint($"              --> Column {userBattleShipGrid.PlayerColumn}",
+                                                        battleShipDisplay.GetInformationLeft(), battleShipDisplay.GetInformationTop() - 1);
+                battleShipDisplay.WriteStringToPoint("  ", battleShipDisplay.GetInformationLeft() + 1, battleShipDisplay.GetInformationTop() + 1);
+                battleShipDisplay.WriteStringToPoint("          Press the Enter / Return key to fire a shot at the MCU's Battleship.", battleShipDisplay.GetInformationLeft() - 5, battleShipDisplay.GetInformationTop() + 1);
+
+                battleShipDisplay.WriteStringToPoint("Press Row Letter on Keyboard to choose which row to target", 
+                                                        battleShipDisplay.GetErrorLeft() + 24, battleShipDisplay.GetErrorTop() - 8);
+                battleShipDisplay.WriteStringToPoint("Press Column number on Keyboard to choose which column to target",
+                                                        battleShipDisplay.GetErrorLeft() + 24, battleShipDisplay.GetErrorTop() - 7);
+                battleShipDisplay.WriteStringToPoint("Where the Row and Column cross on the grid", 
+                                                        battleShipDisplay.GetErrorLeft() + 30, battleShipDisplay.GetErrorTop() - 5);
+                battleShipDisplay.WriteStringToPoint("is where you are targeting your Dove of Love.",
+                                                        battleShipDisplay.GetErrorLeft() + 30, battleShipDisplay.GetErrorTop() - 4);
 
                 battleShipInput.ReadCharFromActor();
                 
@@ -116,14 +130,14 @@ class Program
                     else {
                         userBattleShipGrid.updatePlayerColumn(10);
                     }
-                    battleShipDisplay.WriteLineToPoint($"  if IsNumber then userBattleShipGrid.updatePlayerColumn with {userBattleShipGrid.PlayerColumn}", battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() + 5);
+                    battleShipDisplay.WriteStringToPoint($"  if IsNumber then userBattleShipGrid.updatePlayerColumn with {userBattleShipGrid.PlayerColumn}", battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() + 5);
 
                 }
                 else if (battleShipInput.GetKeyFromActor() == ConsoleKey.Enter) {
                     userBattleShipGrid.updatePlayerFires(true);
 
-                    battleShipDisplay.WriteLineToPoint("   else if battleShipInput.GetKeyFromActor() == ConsoleKey.Enter", battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() + 5);
-                    // battleShipDisplay.WriteLineToPoint($"", battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() + 6);
+                    battleShipDisplay.WriteStringToPoint("   else if battleShipInput.GetKeyFromActor() == ConsoleKey.Enter", battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() + 5);
+                    // battleShipDisplay.WriteStringToPoint($"", battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() + 6);
                 }
                 else {
                     // Could use a List to replace this Switch Case
@@ -174,13 +188,13 @@ class Program
 
                     } // switch
 
-                    battleShipDisplay.WriteLineToPoint($"    else userBattleShipGrid.updatePlayerRow with {userBattleShipGrid.PlayerRow}", battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() + 5);
+                    battleShipDisplay.WriteStringToPoint($"    else userBattleShipGrid.updatePlayerRow with {userBattleShipGrid.PlayerRow}", battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() + 5);
 
                 } // else
 
                 if (userBattleShipGrid.PlayerFires) {
                     userBattleShipGrid.markUserTarget();
-                    battleShipDisplay.WriteLineToPoint($"    userBattleShipGrid.PlayerFires with {userBattleShipGrid.PlayerRow}", battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() + 6);
+                    battleShipDisplay.WriteStringToPoint($"    userBattleShipGrid.PlayerFires with {userBattleShipGrid.PlayerRow}", battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() + 6);
                 }
 
 
