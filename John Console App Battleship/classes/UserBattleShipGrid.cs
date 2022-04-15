@@ -13,6 +13,10 @@ public class UserBattleShipGrid {
     public UserBattleShipGrid(int numberColums, int numberRows) {
         _numberCols = numberColums;
         _numberRows = numberRows;
+
+        PlayerRow = '_';
+        PlayerColumn = -99;
+
         _MissChar = 'O';
 
         _RowNumbers.Add('A');
@@ -36,7 +40,7 @@ public class UserBattleShipGrid {
 
     }
 
-    public char PlayerRow { get; private set; }
+    public char PlayerRow { get ;  private set ; }
 
     public int  PlayerColumn { get; private set; }
 
