@@ -46,6 +46,8 @@ public class UserBattleShipGrid {
 
     public bool PlayerFires { get; private set; }
 
+    public int ShipStrikes { get; private set; }
+
     public char getMissChar() {
         return _MissChar;
     }
@@ -89,6 +91,10 @@ public class UserBattleShipGrid {
             }
         } */
 
+    }
+
+    public void updateNumberOfHits(int numberOfShipStrikes) {
+        ShipStrikes = numberOfShipStrikes;
     }
 
 }

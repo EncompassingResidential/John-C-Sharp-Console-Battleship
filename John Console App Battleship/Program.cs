@@ -57,6 +57,8 @@ class Program
 
                 battleShipDisplay.WriteStringToPoint("1 2 3 4 5 6 7 8 9 10", battleShipDisplay.GetGridLeft(), battleShipDisplay.GetGridTop() - 2);
 
+                int numberOfStrikes = 0;
+
                 // battleShipDisplay.GetGridLeft() 5, battleShipDisplay.GetGridTop() 10
                 // y is 10; 10 < 10 + 10; 10++
                 // y is 11; 10 < 20; 10++
@@ -81,6 +83,7 @@ class Program
                             && battleShipGrid.isShipLocatedHere(column, row)) {
 
                             battleShipDisplay.WriteCharToGrid('X', column, row);
+                            userBattleShipGrid.updateNumberOfHits(++numberOfStrikes);
                             userBattleShipGrid.updatePlayerFires(false);
                         }
                         else if (userBattleShipGrid.getTargetLocation(column, row) == userBattleShipGrid.getMissChar()) {
@@ -101,6 +104,10 @@ class Program
 
                     }  // for column
                 }  // for row
+
+                if (userBattleShipGrid.ShipStrikes > 0) {
+                    battleShipDisplay.WriteStringToPoint($"You hit ship {userBattleShipGrid.ShipStrikes} times!", battleShipDisplay.GetErrorLeft() + 10, battleShipDisplay.GetErrorTop() + 5);
+                }
 
                 battleShipDisplay.WriteStringToPoint("Press Row Letter on Keyboard to choose which row to target",
                                         battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() - 9);
