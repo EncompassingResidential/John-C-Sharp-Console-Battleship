@@ -31,10 +31,15 @@ public class BattleShipGrid {
         _numberCols = numberColums;
         _numberRows = numberRows;
         _battleShipLength = 5;
+        TypeBattleShip = 1;
 
         _shipLocations = new char[getNumberRows(), getNumberColumns()];
 
         resetShipLocation();
+    }
+
+    public int TypeBattleShip {
+        private set; get;
     }
 
     private void resetShipLocation() {
@@ -245,6 +250,10 @@ public class BattleShipGrid {
 
     public int getNumberRows() {
         return _numberRows;
+    }
+
+    public int getShipLength() {
+        return _battleShipLength;
     }
 
     public int getBattleShipRowStart {

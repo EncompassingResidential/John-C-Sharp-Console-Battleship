@@ -97,4 +97,8 @@ public class UserBattleShipGrid {
         ShipStrikes = numberOfShipStrikes;
     }
 
+    public int getNumberOfHits() {
+        return ShipStrikes;
+    }
+
 }

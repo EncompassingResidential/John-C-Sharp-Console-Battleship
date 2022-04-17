@@ -80,6 +80,16 @@ public class BattleShipDisplay
 		Console.ForegroundColor = ConsoleColor.DarkBlue;
 	}
 
+	public void ForeColors() {
+		Console.BackgroundColor = ConsoleColor.DarkGreen;
+		Console.ForegroundColor = ConsoleColor.DarkBlue;
+	}
+
+	public void ReverseColors() {
+		Console.ForegroundColor = ConsoleColor.DarkBlue;
+		Console.BackgroundColor = ConsoleColor.DarkGreen;
+	}
+
 	public int GetGridLeft() {
 		return _BattleShipLocationLeft;
 	}
