@@ -49,6 +49,9 @@ class Program
 
                 battleShipDisplay.ResetScreen();
 
+                battleShipDisplay.WriteStringToPoint($"Begining of while loop currentNumberOfTurns {currentNumberOfTurns}  out of {numberOfTurnsMax} turns.",
+                                            battleShipDisplay.GetErrorLeft() + 10, battleShipDisplay.GetErrorTop() - 1);
+
                 battleShipDisplay.WriteHeaderLine("........................", 0, 0);
                 battleShipDisplay.WriteHeaderLine($"Hello, {name}, on {currentDate:d} at {currentDate:t}!", 0, 1);
                 battleShipDisplay.WriteHeaderLine("      Battleship        ", 0, 2);
@@ -100,31 +103,36 @@ class Program
                             battleShipDisplay.WriteCharToGrid('.', column, row);
                         }
 
-                        /* TESTING */
+                        /* TESTING
                         if (battleShipGrid.isShipLocatedHere(column, row)) {
-                            battleShipDisplay.WriteCharToPoint('B', battleShipDisplay.GetErrorLeft() + (column * 2) + 10, battleShipDisplay.GetErrorTop() + row);
+                            battleShipDisplay.WriteCharToPoint('B', 
+                                                        battleShipDisplay.GetErrorLeft() + (column * 2) + 10, battleShipDisplay.GetErrorTop() + row);
                         }
                         else {
-                            battleShipDisplay.WriteCharToPoint('_', battleShipDisplay.GetErrorLeft() + (column * 2) + 10, battleShipDisplay.GetErrorTop() + row);
+                            battleShipDisplay.WriteCharToPoint('_', 
+                                                        battleShipDisplay.GetErrorLeft() + (column * 2) + 10, battleShipDisplay.GetErrorTop() + row);
                         } /* */
 
                     }  // for column
                 }  // for row
 
                 if (userBattleShipGrid.ShipStrikes > 0) {
-                    battleShipDisplay.WriteStringToPoint($"You hit ship {userBattleShipGrid.ShipStrikes} times!", battleShipDisplay.GetErrorLeft() + 10, battleShipDisplay.GetErrorTop() + 5);
-
-                    battleShipDisplay.WriteStringToPoint($"currentNumberOfTurns {currentNumberOfTurns}  out of {numberOfTurnsMax} turns.",
-                                           battleShipDisplay.GetErrorLeft() + 4, battleShipDisplay.GetErrorTop());
+                    battleShipDisplay.WriteStringToPoint($"You hit the ship {userBattleShipGrid.ShipStrikes} times!", 
+                                                        battleShipDisplay.GetErrorLeft() + 31, battleShipDisplay.GetErrorTop() + 5);
 
                     currentNumberOfTurns = battleShipGrid.getShipLength() - userBattleShipGrid.ShipStrikes + 2;
+
+                    battleShipDisplay.WriteStringToPoint($"ShipStrikes > 0 currentNumberOfTurns is now {currentNumberOfTurns}  out of {numberOfTurnsMax} turns.",
+                                                        battleShipDisplay.GetErrorLeft() + 10, battleShipDisplay.GetErrorTop() - 3);
+
                 }
 
 
                 if (userBattleShipGrid.ShipStrikes > 4) {
                     battleShipDisplay.ReverseColors();
                     Task.Delay(200);
-                    battleShipDisplay.WriteStringToPoint($"You sunk the Battleship!", battleShipDisplay.GetErrorLeft() + 10, battleShipDisplay.GetErrorTop() + 5);
+                    battleShipDisplay.WriteStringToPoint($"You sunk the Battleship!", 
+                                                        battleShipDisplay.GetErrorLeft() + 10, battleShipDisplay.GetErrorTop() + 5);
                     battleShipDisplay.ForeColors();
                     Task.Delay(200);
                     battleShipDisplay.ReverseColors();
@@ -136,11 +144,11 @@ class Program
                                                         battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() - 8);
                 battleShipDisplay.WriteStringToPoint("Where the Row and Column cross on the grid",
                                                         battleShipDisplay.GetErrorLeft() + 4, battleShipDisplay.GetErrorTop() - 6);
-                battleShipDisplay.WriteStringToPoint("is where you are targeting your Dove of Love.",
+                battleShipDisplay.WriteStringToPoint("is where you are targeting your Dove of death.",
                                                        battleShipDisplay.GetErrorLeft() + 4, battleShipDisplay.GetErrorTop() - 5);
 
                 battleShipDisplay.WriteStringToPoint($"Battleship fires on you in {currentNumberOfTurns} turns.",
-                                                           battleShipDisplay.GetErrorLeft() + 4, battleShipDisplay.GetErrorTop() - 2);
+                                                           battleShipDisplay.GetErrorLeft() + 10, battleShipDisplay.GetErrorTop() - 2);
 
 
                 string actorRowString    = (userBattleShipGrid.PlayerRow == '_') ? "Type in You Row Letter" : userBattleShipGrid.PlayerRow.ToString() ;
@@ -174,13 +182,15 @@ class Program
                     else {
                         userBattleShipGrid.updatePlayerColumn(10);
                     }
-                    battleShipDisplay.WriteStringToPoint($"  if IsNumber then userBattleShipGrid.updatePlayerColumn with {userBattleShipGrid.PlayerColumn}", battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() + 5);
+                    battleShipDisplay.WriteStringToPoint($"  if IsNumber then userBattleShipGrid.updatePlayerColumn with {userBattleShipGrid.PlayerColumn}", 
+                                                            battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() + 5);
 
                 }
                 else if (battleShipInput.GetKeyFromActor() == ConsoleKey.Enter) {
                     userBattleShipGrid.updatePlayerFires(true);
 
-                    battleShipDisplay.WriteStringToPoint("   else if battleShipInput.GetKeyFromActor() == ConsoleKey.Enter", battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() + 5);
+                    battleShipDisplay.WriteStringToPoint("   else if battleShipInput.GetKeyFromActor() == ConsoleKey.Enter", 
+                                                            battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() + 5);
                     // battleShipDisplay.WriteStringToPoint($"", battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() + 6);
                 }
                 else {
@@ -232,7 +242,8 @@ class Program
 
                     } // switch
 
-                    battleShipDisplay.WriteStringToPoint($"    else userBattleShipGrid.updatePlayerRow with {userBattleShipGrid.PlayerRow}", battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() + 5);
+                    battleShipDisplay.WriteStringToPoint($"    else userBattleShipGrid.updatePlayerRow with {userBattleShipGrid.PlayerRow}", 
+                                                            battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() + 5);
 
                 } // else
 
@@ -242,8 +253,6 @@ class Program
                     currentNumberOfTurns--;
                 }
 
-                battleShipDisplay.WriteStringToPoint($"End of while loop currentNumberOfTurns {currentNumberOfTurns}  out of {numberOfTurnsMax} turns.",
-                       battleShipDisplay.GetErrorLeft() + 4, battleShipDisplay.GetErrorTop());
 
             } // while
 
