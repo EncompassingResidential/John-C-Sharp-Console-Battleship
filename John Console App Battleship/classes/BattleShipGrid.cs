@@ -42,6 +42,10 @@ public class BattleShipGrid {
         private set; get;
     }
 
+    public void startGameOver() {
+        resetShipLocation();
+    }
+
     private void resetShipLocation() {
 
         for (int rowL = 0; rowL < getNumberRows(); rowL++) {

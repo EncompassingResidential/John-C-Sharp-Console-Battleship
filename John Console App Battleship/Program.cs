@@ -48,9 +48,10 @@ class Program
                 var currentDate = DateTime.Now;
 
                 battleShipDisplay.ResetScreen();
+                userBattleShipGrid.updateGameOverStatus(false);
 
-                battleShipDisplay.WriteStringToPoint($"Begining of while loop currentNumberOfTurns {currentNumberOfTurns}  out of {numberOfTurnsMax} turns.",
-                                            battleShipDisplay.GetErrorLeft() + 10, battleShipDisplay.GetErrorTop() - 1);
+                // battleShipDisplay.WriteStringToPoint($"Begining of while loop currentNumberOfTurns {currentNumberOfTurns}  out of {numberOfTurnsMax} turns.",
+                //                         battleShipDisplay.GetErrorLeft() + 10, battleShipDisplay.GetErrorTop() - 1);
 
                 battleShipDisplay.WriteHeaderLine("........................", 0, 0);
                 battleShipDisplay.WriteHeaderLine($"Hello, {name}, on {currentDate:d} at {currentDate:t}!", 0, 1);
@@ -103,27 +104,46 @@ class Program
                             battleShipDisplay.WriteCharToGrid('.', column, row);
                         }
 
-                        /* TESTING
-                        if (battleShipGrid.isShipLocatedHere(column, row)) {
-                            battleShipDisplay.WriteCharToPoint('B', 
-                                                        battleShipDisplay.GetErrorLeft() + (column * 2) + 10, battleShipDisplay.GetErrorTop() + row);
-                        }
-                        else {
-                            battleShipDisplay.WriteCharToPoint('_', 
-                                                        battleShipDisplay.GetErrorLeft() + (column * 2) + 10, battleShipDisplay.GetErrorTop() + row);
+                        /* TESTING */
+                        if (userBattleShipGrid.isTesting) {
+                            if (battleShipGrid.isShipLocatedHere(column, row)) {
+                                battleShipDisplay.WriteCharToPoint('B', 
+                                                battleShipDisplay.GetErrorLeft() + (column * 2) + 10, battleShipDisplay.GetErrorTop() + row);
+                            }
+                            else {
+                                battleShipDisplay.WriteCharToPoint('_', 
+                                                battleShipDisplay.GetErrorLeft() + (column * 2) + 10, battleShipDisplay.GetErrorTop() + row);
+                            }
                         } /* */
 
                     }  // for column
                 }  // for row
 
+                if (userBattleShipGrid.PlayerFires) {
+                    battleShipDisplay.WriteStringToPoint($"    else userBattleShipGrid.updatePlayerRow with {userBattleShipGrid.PlayerRow}",
+                                        battleShipDisplay.GetErrorLeft() + 31, battleShipDisplay.GetErrorTop() + 6);
+
+                    battleShipDisplay.WriteStringToPoint($"--> userBattleShipGrid.PlayerFires with PlayerRow {userBattleShipGrid.PlayerRow} currentNumberOfTurns {currentNumberOfTurns}",
+                                                        battleShipDisplay.GetErrorLeft() + 31, battleShipDisplay.GetErrorTop() + 10);
+                }
+
                 if (userBattleShipGrid.ShipStrikes > 0) {
-                    battleShipDisplay.WriteStringToPoint($"You hit the ship {userBattleShipGrid.ShipStrikes} times!", 
-                                                        battleShipDisplay.GetErrorLeft() + 31, battleShipDisplay.GetErrorTop() + 5);
+                    string extraS = (userBattleShipGrid.ShipStrikes == 1) ? "" : "s";
 
-                    currentNumberOfTurns = battleShipGrid.getShipLength() - userBattleShipGrid.ShipStrikes + 2;
+                    battleShipDisplay.WriteStringToPoint($"You hit the ship {userBattleShipGrid.ShipStrikes} time{extraS}!", 
+                                                        battleShipDisplay.GetErrorLeft() + 31, battleShipDisplay.GetErrorTop() + 4);
 
-                    battleShipDisplay.WriteStringToPoint($"ShipStrikes > 0 currentNumberOfTurns is now {currentNumberOfTurns}  out of {numberOfTurnsMax} turns.",
-                                                        battleShipDisplay.GetErrorLeft() + 10, battleShipDisplay.GetErrorTop() - 3);
+                    if (userBattleShipGrid.getTargetLocation(userBattleShipGrid.PlayerColumn, userBattleShipGrid.getRowIndex())
+                            == userBattleShipGrid.getMissChar()) {
+                        currentNumberOfTurns--;
+
+                    }
+                    else {
+                        currentNumberOfTurns = battleShipGrid.getShipLength() - userBattleShipGrid.ShipStrikes + 2;
+                    }
+
+                    // battleShipDisplay.WriteStringToPoint($"ShipStrikes > 0 currentNumberOfTurns is now {currentNumberOfTurns}  out of {numberOfTurnsMax} turns.",
+                       //                                 battleShipDisplay.GetErrorLeft() + 10, battleShipDisplay.GetErrorTop() - 3);
 
                 }
 
@@ -132,10 +152,14 @@ class Program
                     battleShipDisplay.ReverseColors();
                     Task.Delay(200);
                     battleShipDisplay.WriteStringToPoint($"You sunk the Battleship!", 
-                                                        battleShipDisplay.GetErrorLeft() + 10, battleShipDisplay.GetErrorTop() + 5);
+                                                        battleShipDisplay.GetErrorLeft() + 10, battleShipDisplay.GetErrorTop() + 7);
                     battleShipDisplay.ForeColors();
                     Task.Delay(200);
                     battleShipDisplay.ReverseColors();
+
+                    battleShipDisplay.WriteStringToPoint($"  Press R or r to ReStart the Game.",
+                                                        battleShipDisplay.GetErrorLeft() + 10, battleShipDisplay.GetErrorTop() + 9);
+
                 }
 
                 battleShipDisplay.WriteStringToPoint("Press Row Letter on Keyboard to choose which row to target",
@@ -182,16 +206,11 @@ class Program
                     else {
                         userBattleShipGrid.updatePlayerColumn(10);
                     }
-                    battleShipDisplay.WriteStringToPoint($"  if IsNumber then userBattleShipGrid.updatePlayerColumn with {userBattleShipGrid.PlayerColumn}", 
-                                                            battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() + 5);
 
                 }
                 else if (battleShipInput.GetKeyFromActor() == ConsoleKey.Enter) {
                     userBattleShipGrid.updatePlayerFires(true);
 
-                    battleShipDisplay.WriteStringToPoint("   else if battleShipInput.GetKeyFromActor() == ConsoleKey.Enter", 
-                                                            battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() + 5);
-                    // battleShipDisplay.WriteStringToPoint($"", battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() + 6);
                 }
                 else {
                     // Could use a List to replace this Switch Case
@@ -240,19 +259,30 @@ class Program
                             userBattleShipGrid.updatePlayerRow('J');
                             break;
 
-                    } // switch
+                        case 'R' or 'r':
+                            userBattleShipGrid.updatePlayerRow('R');
+                            userBattleShipGrid.updateGameOverStatus(true);
+                            break;
 
-                    battleShipDisplay.WriteStringToPoint($"    else userBattleShipGrid.updatePlayerRow with {userBattleShipGrid.PlayerRow}", 
-                                                            battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() + 5);
+                        case 'T' or 't':
+                            userBattleShipGrid.updatePlayerRow('T');
+                            userBattleShipGrid.toggleTesting();
+                            break;
+                    
+                    } // switch
 
                 } // else
 
                 if (userBattleShipGrid.PlayerFires) {
                     userBattleShipGrid.markUserTarget();
-                    // battleShipDisplay.WriteStringToPoint($"    userBattleShipGrid.PlayerFires with {userBattleShipGrid.PlayerRow}", battleShipDisplay.GetErrorLeft(), battleShipDisplay.GetErrorTop() + 6);
                     currentNumberOfTurns--;
                 }
 
+                if (userBattleShipGrid.StartGameOver) {
+                    battleShipGrid.startGameOver();
+                    userBattleShipGrid.resetUserShipStatus();
+                    currentNumberOfTurns = numberOfTurnsMax;
+                }
 
             } // while
 

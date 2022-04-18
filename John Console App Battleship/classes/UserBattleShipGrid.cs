@@ -14,9 +14,6 @@ public class UserBattleShipGrid {
         _numberCols = numberColums;
         _numberRows = numberRows;
 
-        PlayerRow = '_';
-        PlayerColumn = -99;
-
         _MissChar = 'O';
 
         _RowNumbers.Add('A');
@@ -32,14 +29,10 @@ public class UserBattleShipGrid {
 
         _targetLocations = new char[getNumberRows(), getNumberColumns()];
 
-        for (int row = 0; row < getNumberRows(); row++) {
-            for (int col = 0; col < getNumberColumns(); col++) {
-                _targetLocations[row, col] = '~';
-            }
-        }
-
+        resetUserShipStatus();
+        
     }
-
+                                                                                                                                                                                                                                                                                                                                                        
     public char PlayerRow { get ;  private set ; }
 
     public int  PlayerColumn { get; private set; }
@@ -47,6 +40,23 @@ public class UserBattleShipGrid {
     public bool PlayerFires { get; private set; }
 
     public int ShipStrikes { get; private set; }
+
+    public void resetUserShipStatus() {
+
+        updateGameOverStatus(false);
+
+        PlayerRow = '_';
+        PlayerColumn = -99;
+        ShipStrikes = 0;
+        isTesting = false;
+
+        for (int row = 0; row < getNumberRows(); row++) {
+            for (int col = 0; col < getNumberColumns(); col++) {
+                _targetLocations[row, col] = '~';
+            }
+        }
+    }
+     
 
     public char getMissChar() {
         return _MissChar;
@@ -76,11 +86,14 @@ public class UserBattleShipGrid {
         return _targetLocations[row, column];
     }
 
+    public int getRowIndex() {
+        return _RowNumbers.FindIndex(e => e == PlayerRow);
+    }
+
     public void markUserTarget() {
 
         if (PlayerRow != '_' && PlayerColumn != -99) {
-            int indexFound = _RowNumbers.FindIndex(e => e == PlayerRow);
-            _targetLocations[indexFound, PlayerColumn - 1] = getMissChar();
+            _targetLocations[getRowIndex(), PlayerColumn - 1] = getMissChar();
         }
         else {
             updatePlayerFires(false);
@@ -97,8 +110,19 @@ public class UserBattleShipGrid {
         ShipStrikes = numberOfShipStrikes;
     }
 
-    public int getNumberOfHits() {
-        return ShipStrikes;
+    public void updateGameOverStatus(bool gameStatus) {
+        StartGameOver = gameStatus;
     }
 
+    public bool StartGameOver {
+        get; private set;
+    }
+
+    public bool isTesting {
+        get; private set;
+    }
+
+    public void toggleTesting() {
+        isTesting = (isTesting) ? false : true;
+    }
 }
