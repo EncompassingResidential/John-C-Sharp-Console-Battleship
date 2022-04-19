@@ -44,6 +44,9 @@ class Program
             int currentNumberOfTurns = numberOfTurnsMax;
             bool wasUserBattleShipGridPlayerFires = false;
 
+            int previousRow = -1;
+            int previousColumn = -1;
+
             while (runGame)
             {
                 var currentDate = DateTime.Now;
@@ -301,7 +304,13 @@ class Program
                 } // else
 
                 // When Actor presses ENTER
-                if (userBattleShipGrid.PlayerFires) {
+                if (userBattleShipGrid.PlayerFires &&
+                        ( previousRow != userBattleShipGrid.getRowIndex() ||
+                            previousColumn != userBattleShipGrid.PlayerColumn - 1 ) ) {
+
+                    previousRow = userBattleShipGrid.getRowIndex();
+                    previousColumn = userBattleShipGrid.PlayerColumn - 1;
+
                     userBattleShipGrid.markUserTarget();
 
                     // If a Hit
@@ -322,19 +331,20 @@ class Program
                         else {
                             // Example 2 - It was a hit previously but they missed and now hit again
                             // 2 < 1 = 2 turns left and only struck ship once
-                            // 2 < 2 = 2 turns left and struck ship twice
-                            // 2 < 3 = 2 turns left and struck ship 3 times
-                            //
-                            // 2 > 1 = 2 turns left and only struck ship once
                             //              5 - 2 = 3
                             //              5 - 1 = 4
-                            // 2 > 2 = 2 turns left and struck ship twice
-                            // 2 > 3 = 2 turns left and struck ship 3 times
+                            // 2 < 2 = 2 turns left and struck ship twice
+                            // 2 < 3 = 2 turns left and struck ship 3 times
                             if ( currentNumberOfTurns < battleShipGrid.getShipLength() ) {
                                 /*
                                  * 
                                  */
-                                currentNumberOfTurns = battleShipGrid.getShipLength() - userBattleShipGrid.ShipStrikes + 0;
+                                if (currentNumberOfTurns < battleShipGrid.getShipLength() - userBattleShipGrid.ShipStrikes) {
+                                    currentNumberOfTurns = battleShipGrid.getShipLength() - userBattleShipGrid.ShipStrikes + 0;
+                                }
+                                else {
+                                    currentNumberOfTurns--;
+                                }
                             }
                             else {
                                 currentNumberOfTurns--;
