@@ -42,6 +42,7 @@ class Program
 
             const int numberOfTurnsMax = 8;
             int currentNumberOfTurns = numberOfTurnsMax;
+            bool wasUserBattleShipGridPlayerFires = false;
 
             while (runGame)
             {
@@ -66,7 +67,7 @@ class Program
 
                 int numberOfStrikes = 0;
                 char rowCharacter = ' ';
-                int curNumOfTurnsBeginingOfForLoop = currentNumberOfTurns;
+                // int curNumOfTurnsBeginingOfForLoop = currentNumberOfTurns;
 
                 // battleShipDisplay.GetGridLeft() 5, battleShipDisplay.GetGridTop() 10
                 // y is 10; 10 < 10 + 10; 10++
@@ -119,31 +120,58 @@ class Program
                     }  // for column
                 }  // for row
 
-                if (userBattleShipGrid.PlayerFires) {
-                    battleShipDisplay.WriteStringToPoint($"    else userBattleShipGrid.updatePlayerRow with {userBattleShipGrid.PlayerRow}",
-                                        battleShipDisplay.GetErrorLeft() + 31, battleShipDisplay.GetErrorTop() + 6);
+                int testingPresentWidth = (userBattleShipGrid.isTesting) ? 21 : 0;
 
-                    battleShipDisplay.WriteStringToPoint($"--> userBattleShipGrid.PlayerFires with PlayerRow {userBattleShipGrid.PlayerRow} currentNumberOfTurns {currentNumberOfTurns}",
-                                                        battleShipDisplay.GetErrorLeft() + 31, battleShipDisplay.GetErrorTop() + 10);
+                if (wasUserBattleShipGridPlayerFires) {
+                    wasUserBattleShipGridPlayerFires = false;
+                    battleShipDisplay.WriteStringToPoint($"update PlayerRow {userBattleShipGrid.PlayerRow}",
+                                        battleShipDisplay.GetErrorLeft() + testingPresentWidth + 11, battleShipDisplay.GetErrorTop() + 10);
+                    battleShipDisplay.WriteStringToPoint($"update PlayerCol {userBattleShipGrid.PlayerColumn}",
+                                        battleShipDisplay.GetErrorLeft() + testingPresentWidth + 11, battleShipDisplay.GetErrorTop() + 11);
                 }
 
-                if (userBattleShipGrid.ShipStrikes > 0) {
-                    string extraS = (userBattleShipGrid.ShipStrikes == 1) ? "" : "s";
+                string extraS = (userBattleShipGrid.ShipStrikes == 1) ? "" : "s";
 
-                    battleShipDisplay.WriteStringToPoint($"You hit the ship {userBattleShipGrid.ShipStrikes} time{extraS}!", 
-                                                        battleShipDisplay.GetErrorLeft() + 11, battleShipDisplay.GetErrorTop() + 4);
+                if (userBattleShipGrid.ShipStrikes > 0 && userBattleShipGrid.areUserInputsValid()) {
 
-                    if (userBattleShipGrid.getTargetLocation(userBattleShipGrid.PlayerColumn, userBattleShipGrid.getRowIndex())
-                        == userBattleShipGrid.getUserTargetChar()) {
-                        currentNumberOfTurns--;
+                    battleShipDisplay.WriteStringToPoint($"You hit the ship {userBattleShipGrid.ShipStrikes} time{extraS}!",
+                                         battleShipDisplay.GetErrorLeft() + testingPresentWidth + 11, battleShipDisplay.GetErrorTop() + 4);
+
+                    battleShipDisplay.WriteStringToPoint($"Player shot [getRowIndex(), PlayerColumn]",
+                                         battleShipDisplay.GetErrorLeft() + testingPresentWidth +  9, battleShipDisplay.GetErrorTop() + 6);
+                    battleShipDisplay.WriteStringToPoint($"            [{userBattleShipGrid.getRowIndex()}, {userBattleShipGrid.PlayerColumn - 1}]",
+                                         battleShipDisplay.GetErrorLeft() + testingPresentWidth +  9, battleShipDisplay.GetErrorTop() + 7);
+
+                    if (userBattleShipGrid.getTargetLocation(userBattleShipGrid.PlayerColumn - 1, userBattleShipGrid.getRowIndex())
+                                == userBattleShipGrid.getUserTargetChar()) {
+                    // When Actor presses ENTER
+                        // currentNumberOfTurns--;
+                        battleShipDisplay.WriteStringToPoint($"WHAT getTargetLoction == getUserTargetChar  >>> currentNumberOfTurns is now {currentNumberOfTurns}",
+                                                        battleShipDisplay.GetErrorLeft() - 6, battleShipDisplay.GetErrorTop() - 3);
                     }
                     else {
-                        currentNumberOfTurns = battleShipGrid.getShipLength() - userBattleShipGrid.ShipStrikes + 2;
+                        // When Actor presses non-Enter keys
+
+                        if (userBattleShipGrid.ShipStrikes == 1) {
+                            currentNumberOfTurns = battleShipGrid.getShipLength() - userBattleShipGrid.ShipStrikes + 2;
+                            battleShipDisplay.WriteStringToPoint($"HEY getTargetLoction  !=  getUserTargetChar  >>> currentNumberOfTurns is now {currentNumberOfTurns}",
+                                                            battleShipDisplay.GetErrorLeft() - 6, battleShipDisplay.GetErrorTop() - 3);
+                        }
+                        else {
+                            // currentNumberOfTurns = ;
+                        }
                     }
 
-                    battleShipDisplay.WriteStringToPoint($"ShipStrikes > 0 currentNumberOfTurns is now {currentNumberOfTurns}  out of {numberOfTurnsMax} turns.",
-                                                        battleShipDisplay.GetErrorLeft() + 31, battleShipDisplay.GetErrorTop() - 3);
+                    //battleShipDisplay.WriteStringToPoint($"ShipStrikes > 0 && areUserInputsValid then currentNumberOfTurns is now {currentNumberOfTurns}  out of {numberOfTurnsMax} turns.",
+                    //                                  battleShipDisplay.GetErrorLeft() - 6, battleShipDisplay.GetErrorTop() - 3);
 
+                }
+                else if (userBattleShipGrid.ShipStrikes > 0) {
+                    battleShipDisplay.WriteStringToPoint($"You hit the ship {userBattleShipGrid.ShipStrikes} time{extraS}!",
+                                        battleShipDisplay.GetErrorLeft() + testingPresentWidth + 11, battleShipDisplay.GetErrorTop() + 4);
+
+                    battleShipDisplay.WriteStringToPoint($"HOW           >>> currentNumberOfTurns is now {currentNumberOfTurns}",
+                                                        battleShipDisplay.GetErrorLeft() - 6, battleShipDisplay.GetErrorTop() - 3);
                 }
 
 
@@ -151,13 +179,13 @@ class Program
                     battleShipDisplay.ReverseColors();
                     Task.Delay(200);
                     battleShipDisplay.WriteStringToPoint($"You sunk the Battleship!", 
-                                                        battleShipDisplay.GetErrorLeft() + 10, battleShipDisplay.GetErrorTop() + 7);
+                                                battleShipDisplay.GetErrorLeft() + testingPresentWidth + 12, battleShipDisplay.GetErrorTop() + 7);
                     battleShipDisplay.ForeColors();
                     Task.Delay(200);
                     battleShipDisplay.ReverseColors();
 
-                    battleShipDisplay.WriteStringToPoint($"  Press R or r to ReStart the Game.",
-                                                        battleShipDisplay.GetErrorLeft() + 10, battleShipDisplay.GetErrorTop() + 9);
+                    battleShipDisplay.WriteStringToPoint($"Press R or r to ReStart the Game.",
+                                                battleShipDisplay.GetErrorLeft() + testingPresentWidth + 10, battleShipDisplay.GetErrorTop() + 11);
 
                 }
 
@@ -209,7 +237,7 @@ class Program
                 }
                 else if (battleShipInput.GetKeyFromActor() == ConsoleKey.Enter) {
                     userBattleShipGrid.updatePlayerFires(true);
-
+                    wasUserBattleShipGridPlayerFires = true;
                 }
                 else {
                     // Could use a List to replace this Switch Case
@@ -272,10 +300,56 @@ class Program
 
                 } // else
 
+                // When Actor presses ENTER
                 if (userBattleShipGrid.PlayerFires) {
                     userBattleShipGrid.markUserTarget();
-                    currentNumberOfTurns--;
-                }
+
+                    // If a Hit
+                    if (userBattleShipGrid.didUserFireHere(userBattleShipGrid.PlayerColumn - 1, userBattleShipGrid.getRowIndex())
+                            == battleShipGrid.isShipLocatedHere(userBattleShipGrid.PlayerColumn - 1, userBattleShipGrid.getRowIndex())) {
+
+                        // On 1st Player fire, the ShipStrikes will be 0 at this point
+                        // On 2nd Player fire, the ShipStrikes will be 1 at this point
+                        if (userBattleShipGrid.ShipStrikes == 0) {
+                            // 5 - 0 + 2 = 7
+                            // 5 - 1 + 2 = 6
+                            // ..
+                            // 5 - 4 + 2 = 3
+                            currentNumberOfTurns = battleShipGrid.getShipLength() - userBattleShipGrid.ShipStrikes + 2;
+                        } // if
+
+                        // Example 1 - It's a hit and it's ShipStrikes >= 1
+                        else {
+                            // Example 2 - It was a hit previously but they missed and now hit again
+                            // 2 < 1 = 2 turns left and only struck ship once
+                            // 2 < 2 = 2 turns left and struck ship twice
+                            // 2 < 3 = 2 turns left and struck ship 3 times
+                            //
+                            // 2 > 1 = 2 turns left and only struck ship once
+                            //              5 - 2 = 3
+                            //              5 - 1 = 4
+                            // 2 > 2 = 2 turns left and struck ship twice
+                            // 2 > 3 = 2 turns left and struck ship 3 times
+                            if ( currentNumberOfTurns < battleShipGrid.getShipLength() ) {
+                                /*
+                                 * 
+                                 */
+                                currentNumberOfTurns = battleShipGrid.getShipLength() - userBattleShipGrid.ShipStrikes + 0;
+                            }
+                            else {
+                                currentNumberOfTurns--;
+                            } // else
+                        } // else
+                    } // if a hit
+
+                    // If not a hit
+                    // Example 1 - subtract 1
+                    // Example 2 - On any Player fire after they hit the ship and this time they miss then subtract 1
+                    else {
+                        currentNumberOfTurns--;
+                    } // else
+
+                } // If Actor fires
 
                 if (userBattleShipGrid.StartGameOver) {
                     battleShipGrid.startGameOver();

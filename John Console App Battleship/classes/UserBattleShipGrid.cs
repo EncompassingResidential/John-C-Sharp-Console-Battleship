@@ -47,7 +47,9 @@ public class UserBattleShipGrid {
 
         PlayerRow = '_';
         PlayerColumn = -99;
-        ShipStrikes = 0;
+
+        updateNumberOfHits(0);
+
         isTesting = false;
 
         for (int row = 0; row < getNumberRows(); row++) {
@@ -63,7 +65,12 @@ public class UserBattleShipGrid {
     }
 
     public void updatePlayerColumn(int playerColumn) {
-        PlayerColumn = playerColumn;
+        if ( playerColumn > 0 && playerColumn <= getNumberColumns() ) {
+            PlayerColumn = playerColumn;
+        }
+        else {
+            PlayerColumn = -99;
+        }
     }
 
     public void updatePlayerRow(char playerRow) {
@@ -84,6 +91,24 @@ public class UserBattleShipGrid {
 
     public char getTargetLocation(int column, int row) {
         return _targetLocations[row, column];
+    }
+
+    public bool didUserFireHere(int column, int row) {
+        bool didFireHere = false;
+        if ( _targetLocations[row, column] == getUserTargetChar() ) {
+            didFireHere = true;
+        }
+        return didFireHere;
+    }
+
+    public bool areUserInputsValid() {
+        bool returnBoolean = false;
+        if (getRowIndex() >= 0 && getRowIndex() < _RowNumbers.Count) {
+            if ( PlayerColumn > 0 && PlayerColumn < _numberCols) {
+                returnBoolean = true;
+            }
+        }
+        return returnBoolean;
     }
 
     public int getRowIndex() {
