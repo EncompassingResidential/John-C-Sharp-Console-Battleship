@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class UserBattleShipGrid {
     private int _numberRows;
     private int _numberCols;
-    private char _MissChar;
+    private char _UserTargetChar;
 
     private char[,] _targetLocations;
 
@@ -14,7 +14,7 @@ public class UserBattleShipGrid {
         _numberCols = numberColums;
         _numberRows = numberRows;
 
-        _MissChar = 'O';
+        _UserTargetChar = 'O';
 
         _RowNumbers.Add('A');
         _RowNumbers.Add('B');
@@ -58,8 +58,8 @@ public class UserBattleShipGrid {
     }
      
 
-    public char getMissChar() {
-        return _MissChar;
+    public char getUserTargetChar() {
+        return _UserTargetChar;
     }
 
     public void updatePlayerColumn(int playerColumn) {
@@ -87,13 +87,17 @@ public class UserBattleShipGrid {
     }
 
     public int getRowIndex() {
-        return _RowNumbers.FindIndex(e => e == PlayerRow);
+        // why did creating this rowIndex variable fix this?
+        int rowIndex = _RowNumbers.FindIndex(e => e == PlayerRow);
+
+        // when I did a direct return of the _RowNumbers.FindIndex it broke the code.
+        return rowIndex;
     }
 
     public void markUserTarget() {
 
         if (PlayerRow != '_' && PlayerColumn != -99) {
-            _targetLocations[getRowIndex(), PlayerColumn - 1] = getMissChar();
+            _targetLocations[getRowIndex(), PlayerColumn - 1] = getUserTargetChar();
         }
         else {
             updatePlayerFires(false);

@@ -26,9 +26,6 @@ public class BattleShipInput
 
 		cKeyInfo = Console.ReadKey(true);
 
-		Console.SetCursorPosition(26, 15);
-		Console.Write($"   ReadCharFromActor  --> cKeyInfo.Key <{cKeyInfo.Key}> and cKeyInfo.KeyChar <{cKeyInfo.KeyChar}>");
-
 		_ActorInputChar = cKeyInfo.KeyChar;
 		_ActorKeyInfo = cKeyInfo.Key;
 

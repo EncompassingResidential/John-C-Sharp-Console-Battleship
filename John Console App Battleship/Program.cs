@@ -50,8 +50,8 @@ class Program
                 battleShipDisplay.ResetScreen();
                 userBattleShipGrid.updateGameOverStatus(false);
 
-                // battleShipDisplay.WriteStringToPoint($"Begining of while loop currentNumberOfTurns {currentNumberOfTurns}  out of {numberOfTurnsMax} turns.",
-                //                         battleShipDisplay.GetErrorLeft() + 10, battleShipDisplay.GetErrorTop() - 1);
+                battleShipDisplay.WriteStringToPoint($"Begining of while loop currentNumberOfTurns {currentNumberOfTurns}  out of {numberOfTurnsMax} turns.",
+                                                    battleShipDisplay.GetErrorLeft() + 10, battleShipDisplay.GetErrorTop() - 1);
 
                 battleShipDisplay.WriteHeaderLine("........................", 0, 0);
                 battleShipDisplay.WriteHeaderLine($"Hello, {name}, on {currentDate:d} at {currentDate:t}!", 0, 1);
@@ -88,7 +88,7 @@ class Program
                     // 9; 7 < 25; 9 += 2
                     // 11; 11 < 25; 11 += 2
                     for (int column = 0; column < battleShipGrid.getNumberColumns(); column++ ) {
-                        if (userBattleShipGrid.getTargetLocation(column, row) == userBattleShipGrid.getMissChar() 
+                        if (userBattleShipGrid.getTargetLocation(column, row) == userBattleShipGrid.getUserTargetChar() 
                             && battleShipGrid.isShipLocatedHere(column, row)) {
 
                             battleShipDisplay.WriteCharToGrid('X', column, row);
@@ -96,8 +96,8 @@ class Program
                             userBattleShipGrid.updatePlayerFires(false);
                             
                         }
-                        else if (userBattleShipGrid.getTargetLocation(column, row) == userBattleShipGrid.getMissChar()) {
-                            battleShipDisplay.WriteCharToGrid(userBattleShipGrid.getMissChar(), column, row);
+                        else if (userBattleShipGrid.getTargetLocation(column, row) == userBattleShipGrid.getUserTargetChar()) {
+                            battleShipDisplay.WriteCharToGrid(userBattleShipGrid.getUserTargetChar(), column, row);
                             userBattleShipGrid.updatePlayerFires(false);
                         }
                         else {
@@ -131,19 +131,18 @@ class Program
                     string extraS = (userBattleShipGrid.ShipStrikes == 1) ? "" : "s";
 
                     battleShipDisplay.WriteStringToPoint($"You hit the ship {userBattleShipGrid.ShipStrikes} time{extraS}!", 
-                                                        battleShipDisplay.GetErrorLeft() + 31, battleShipDisplay.GetErrorTop() + 4);
+                                                        battleShipDisplay.GetErrorLeft() + 11, battleShipDisplay.GetErrorTop() + 4);
 
                     if (userBattleShipGrid.getTargetLocation(userBattleShipGrid.PlayerColumn, userBattleShipGrid.getRowIndex())
-                            == userBattleShipGrid.getMissChar()) {
+                        == userBattleShipGrid.getUserTargetChar()) {
                         currentNumberOfTurns--;
-
                     }
                     else {
                         currentNumberOfTurns = battleShipGrid.getShipLength() - userBattleShipGrid.ShipStrikes + 2;
                     }
 
-                    // battleShipDisplay.WriteStringToPoint($"ShipStrikes > 0 currentNumberOfTurns is now {currentNumberOfTurns}  out of {numberOfTurnsMax} turns.",
-                       //                                 battleShipDisplay.GetErrorLeft() + 10, battleShipDisplay.GetErrorTop() - 3);
+                    battleShipDisplay.WriteStringToPoint($"ShipStrikes > 0 currentNumberOfTurns is now {currentNumberOfTurns}  out of {numberOfTurnsMax} turns.",
+                                                        battleShipDisplay.GetErrorLeft() + 31, battleShipDisplay.GetErrorTop() - 3);
 
                 }
 
@@ -260,12 +259,12 @@ class Program
                             break;
 
                         case 'R' or 'r':
-                            userBattleShipGrid.updatePlayerRow('R');
+                            userBattleShipGrid.updatePlayerRow('_');
                             userBattleShipGrid.updateGameOverStatus(true);
                             break;
 
                         case 'T' or 't':
-                            userBattleShipGrid.updatePlayerRow('T');
+                            userBattleShipGrid.updatePlayerRow('_');
                             userBattleShipGrid.toggleTesting();
                             break;
                     
