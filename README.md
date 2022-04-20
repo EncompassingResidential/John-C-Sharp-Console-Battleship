@@ -10,6 +10,22 @@ It is run from the Command Line Interface (CLI) or double clicked from mouse.
 
 ## When the App comes up
 
+### Initial Opening Screen
+
+https://github.com/EncompassingResidential/John-C-Sharp-Console-Battleship/blob/d5b8e3ac236bbd86bd205a4ece93453a2f2e54d1/John%20Console%20App%20Battleship/Battle%20Ship%20Opening%20Screen.png
+
+### Main Screen
+
+https://github.com/EncompassingResidential/John-C-Sharp-Console-Battleship/blob/d5b8e3ac236bbd86bd205a4ece93453a2f2e54d1/John%20Console%20App%20Battleship/Battle%20Ship%20Main%20Screen%20-%20Initial%20screen%20after%20choosing%20your%20Call%20Sign%20Name.png
+
+### Sunk the Battleship screen
+
+https://github.com/EncompassingResidential/John-C-Sharp-Console-Battleship/blob/d5b8e3ac236bbd86bd205a4ece93453a2f2e54d1/John%20Console%20App%20Battleship/Battle%20Ship%20Main%20Screen%20-%20Win%20screen%20Sunk%20the%20Battleship.png
+
+### Easter Egg Screen
+
+https://github.com/EncompassingResidential/John-C-Sharp-Console-Battleship/blob/d5b8e3ac236bbd86bd205a4ece93453a2f2e54d1/John%20Console%20App%20Battleship/Battle%20Ship%20Main%20Screen%20-%20Showing%20Easter%20Egg%20Radar%20option.png
+
 ### In PowerShell how to run on command line:
 
 'Found on https://www.delftstack.com/howto/powershell/running-executable-files-in-powershell/'
