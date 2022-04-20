@@ -165,13 +165,12 @@ class Program
                         battleShipDisplay.GetGridLeft() - 15, battleShipDisplay.GetGridTop() + 7);
 
 
-                battleShipInput.ReadCharFromActor();
-                
-                actorChar = battleShipInput.GetCharFromActor();
-
+                // This line HAS to be before ParseCharFromActor()
                 userBattleShipGrid.updateRestartGameStatus(false);
 
-                ParseCharFromActor(userBattleShipGrid, battleShipInput, actorChar);
+                battleShipInput.ReadCharFromActor();
+                
+                ParseCharFromActor(userBattleShipGrid, battleShipInput, battleShipInput.GetCharFromActor());
 
                 // When Actor presses ENTER
                 if (userBattleShipGrid.areUserInputsValid() &&
