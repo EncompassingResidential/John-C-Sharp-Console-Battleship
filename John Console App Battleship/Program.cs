@@ -316,7 +316,7 @@ class Program
 
                 } // If Actor fires
 
-                if ( userBattleShipGrid.StartGameOver || currentNumberOfTurns < 0 ) {
+                if ( userBattleShipGrid.StartGameOver || currentNumberOfTurns <= 0 ) {
                     battleShipGrid.startGameOver();
                     userBattleShipGrid.resetUserShipStatus();
                     currentNumberOfTurns = numberOfTurnsMax;
