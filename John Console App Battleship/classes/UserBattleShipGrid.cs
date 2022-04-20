@@ -16,6 +16,13 @@ public class UserBattleShipGrid {
 
         ActorName = "Default Actor Name";
 
+        RunGame = true;
+
+        UserTriedAndFailed = false;
+        UserTriedAndFailedCount = 0;
+
+        BattleShipSunk = false;
+
         _UserTargetChar = 'O';
 
         _RowNumbers.Add('A');
@@ -48,6 +55,12 @@ public class UserBattleShipGrid {
     public bool UserTriedAndFailed { get; set; }
 
     public string ActorName { get; set; }
+
+    public int UserTriedAndFailedCount { get; set; }
+
+    public bool BattleShipSunk { get; set; }
+
+    public int CurrentNumberOfTurns { get; set; }
 
     public void resetUserShipStatus() {
 
