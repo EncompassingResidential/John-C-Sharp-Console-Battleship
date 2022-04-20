@@ -14,6 +14,8 @@ public class UserBattleShipGrid {
         _numberCols = numberColums;
         _numberRows = numberRows;
 
+        ActorName = "Default Actor Name";
+
         _UserTargetChar = 'O';
 
         _RowNumbers.Add('A');
@@ -30,16 +32,22 @@ public class UserBattleShipGrid {
         _targetLocations = new char[getNumberRows(), getNumberColumns()];
 
         resetUserShipStatus();
-        
-    }
-                                                                                                                                                                                                                                                                                                                                                        
-    public char PlayerRow { get ;  private set ; }
 
-    public int  PlayerColumn { get; private set; }
+    }
+
+    public char PlayerRow { get; private set; }
+
+    public int PlayerColumn { get; private set; }
 
     public bool PlayerFires { get; private set; }
 
     public int ShipStrikes { get; private set; }
+
+    public bool RunGame { get; set; }
+
+    public bool UserTriedAndFailed { get; set; }
+
+    public string ActorName { get; set; }
 
     public void resetUserShipStatus() {
 

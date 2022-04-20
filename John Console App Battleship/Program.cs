@@ -17,24 +17,15 @@ class Program
 
             battleShipDisplay.setGridLocation(battleShipDisplay.GetHeaderLeft() + 20, battleShipDisplay.GetHeaderTop() + 11);
 
-            battleShipDisplay.WriteStringLine(" ");
-            battleShipDisplay.WriteStringLine("    TOP SECRET");
-            battleShipDisplay.WriteStringLine("                     -  Our fate rests at your finger tips...");
-            battleShipDisplay.WriteStringLine(" ");
-            battleShipDisplay.WriteStringLine("The Battleship has been hidden behind an invisible cloak by Master CPU!");
-            battleShipDisplay.WriteStringLine(" ");
-            battleShipDisplay.WriteStringLine("     You must find it and sink it...");
-            battleShipDisplay.WriteStringLine(" ");
-
-            battleShipDisplay.WriteString("       Type In Your Code Name Call Sign In : ");
+            InitialScreenLayout(battleShipDisplay);
 
             battleShipInput.ReadLineFromActor();
 
-            var name = battleShipInput.GetLineFromActor();
+            userBattleShipGrid.ActorName = battleShipInput.GetLineFromActor();
 
             battleShipDisplay.ResetScreen();
 
-            bool runGame = true;
+            userBattleShipGrid.RunGame = true;
             char actorChar = 'y';
             
             const int numberOfTurnsMax = 8;
@@ -42,26 +33,17 @@ class Program
 
             int previousRow = -1;
             int previousColumn = -1;
-            bool userTriedAndFailed = false;
+
+            userBattleShipGrid.UserTriedAndFailed = false;
             int  userTriedAndFailedCount = 0;
+
             bool BattleShipSunk = false;
 
-            while (runGame)
+            while (userBattleShipGrid.RunGame)
             {
-                var currentDate = DateTime.Now;
-
                 battleShipDisplay.ResetScreen();
 
-                battleShipDisplay.WriteHeaderLine("........................", 0, 0);
-                battleShipDisplay.WriteHeaderLine($"Hello, {name}, on {currentDate:d} at {currentDate:t}!", 0, 1);
-                battleShipDisplay.WriteHeaderLine("      Battleship        ", 0, 2);
-                battleShipDisplay.WriteHeaderLine("........................", 0, 3);
-                battleShipDisplay.WriteHeaderLine(".......The Ocean........", 0, 4);
-                battleShipDisplay.WriteHeaderLine("........................", 0, 5);
-
-                battleShipDisplay.WriteHeaderLine("Press 'q' or 'Q' to blow up the entire Grid...", 0, 7);
-
-                battleShipDisplay.WriteStringToPoint("1 2 3 4 5 6 7 8 9 10", battleShipDisplay.GetGridLeft(), battleShipDisplay.GetGridTop() - 2);
+                ShowHeader(battleShipDisplay, userBattleShipGrid);
 
                 int numberOfStrikes = 0;
                 char rowCharacter = ' ';
@@ -114,7 +96,7 @@ class Program
                                          battleShipDisplay.GetErrorLeft() + testingPresentWidth + 11, battleShipDisplay.GetErrorTop() + 4);
 
                 }
-                else if ( ! userBattleShipGrid.StartGameOver && userTriedAndFailed && ! BattleShipSunk ) {
+                else if ( ! userBattleShipGrid.StartGameOver && userBattleShipGrid.UserTriedAndFailed && ! BattleShipSunk ) {
 
                     userTriedAndFailedCount++;
 
@@ -127,7 +109,7 @@ class Program
                     
                     if (userTriedAndFailedCount >= 1) {
                         BattleShipSunk = false;
-                        userTriedAndFailed = false;
+                        userBattleShipGrid.UserTriedAndFailed = false;
                         userTriedAndFailedCount = 0;
                     }
                 }
@@ -189,82 +171,7 @@ class Program
 
                 userBattleShipGrid.updateRestartGameStatus(false);
 
-                if (Char.IsNumber(actorChar) == true) {
-                    userBattleShipGrid.updatePlayerFires(false);
-
-                    if (actorChar >= 49) {
-                        userBattleShipGrid.updatePlayerColumn(actorChar - 48);
-                    }
-                    else {
-                        userBattleShipGrid.updatePlayerColumn(10);
-                    }
-
-                }
-                else if (battleShipInput.GetKeyFromActor() == ConsoleKey.Enter) {
-                    userBattleShipGrid.updatePlayerFires(true);
-                }
-                else {
-                    userBattleShipGrid.updatePlayerFires(false);
-
-                    // Could use a List to replace this Switch Case
-                    switch (actorChar) {
-                        case 'A' or 'a':
-                            userBattleShipGrid.updatePlayerRow('A');
-                            break;
-
-                        case 'B' or 'b':
-                            userBattleShipGrid.updatePlayerRow('B');
-                            break;
-
-                        case 'C' or 'c':
-                            userBattleShipGrid.updatePlayerRow('C');
-                            break;
-
-                        case 'D' or 'd':
-                            userBattleShipGrid.updatePlayerRow('D');
-                            break;
-
-                        case 'E' or 'e':
-                            userBattleShipGrid.updatePlayerRow('E');
-                            break;
-
-                        case 'F' or 'f':
-                            userBattleShipGrid.updatePlayerRow('F');
-                            break;
-
-                        case 'G' or 'g':
-                            userBattleShipGrid.updatePlayerRow('G');
-                            break;
-
-                        case 'H' or 'h':
-                            userBattleShipGrid.updatePlayerRow('H');
-                            break;
-
-                        case 'I' or 'i':
-                            userBattleShipGrid.updatePlayerRow('I');
-                            break;
-
-                        case 'J' or 'j':
-                            userBattleShipGrid.updatePlayerRow('J');
-                            break;
-
-                        case 'Q' or 'q':
-                            runGame = false;
-                            break;
-
-                        case 'R' or 'r':
-                            userBattleShipGrid.updatePlayerRow('_');
-                            userBattleShipGrid.updateRestartGameStatus(true);
-                            userTriedAndFailed = false;
-                            break;
-
-                        case 'T' or 't':
-                            userBattleShipGrid.toggleTesting();
-                            break;
-
-                    } // switch
-
-                } // else
+                ParseCharFromActor(userBattleShipGrid, battleShipInput, actorChar);
 
                 // When Actor presses ENTER
                 if (userBattleShipGrid.areUserInputsValid() &&
@@ -325,12 +232,122 @@ class Program
                     previousColumn = -1;
 
                     if ( ! userBattleShipGrid.StartGameOver ) {
-                        userTriedAndFailed = true;
+                        userBattleShipGrid.UserTriedAndFailed = true;
                     }
                 }
 
             } // while
 
         } // Main
-    }
+
+        static void InitialScreenLayout(BattleShipDisplay battleShipDisplay) {
+            battleShipDisplay.WriteStringLine(" ");
+            battleShipDisplay.WriteStringLine("    TOP SECRET");
+            battleShipDisplay.WriteStringLine("                     -  Our fate rests at your finger tips...");
+            battleShipDisplay.WriteStringLine(" ");
+            battleShipDisplay.WriteStringLine("The Battleship has been hidden behind an invisible cloak by Master CPU!");
+            battleShipDisplay.WriteStringLine(" ");
+            battleShipDisplay.WriteStringLine("     You must find it and sink it...");
+            battleShipDisplay.WriteStringLine(" ");
+
+            battleShipDisplay.WriteString("       Type In Your Code Name Call Sign In : ");
+        }
+
+        static void ParseCharFromActor(UserBattleShipGrid userBattleShipGrid, BattleShipInput battleShipInput, char actorChar) {
+
+            if (Char.IsNumber(actorChar) == true) {
+                userBattleShipGrid.updatePlayerFires(false);
+
+                if (actorChar >= 49) {
+                    userBattleShipGrid.updatePlayerColumn(actorChar - 48);
+                }
+                else {
+                    userBattleShipGrid.updatePlayerColumn(10);
+                }
+
+            }
+            else if (battleShipInput.GetKeyFromActor() == ConsoleKey.Enter) {
+                userBattleShipGrid.updatePlayerFires(true);
+            }
+            else {
+                userBattleShipGrid.updatePlayerFires(false);
+
+                // Could use a List to replace this Switch Case
+                switch (actorChar) {
+                    case 'A' or 'a':
+                        userBattleShipGrid.updatePlayerRow('A');
+                        break;
+
+                    case 'B' or 'b':
+                        userBattleShipGrid.updatePlayerRow('B');
+                        break;
+
+                    case 'C' or 'c':
+                        userBattleShipGrid.updatePlayerRow('C');
+                        break;
+
+                    case 'D' or 'd':
+                        userBattleShipGrid.updatePlayerRow('D');
+                        break;
+
+                    case 'E' or 'e':
+                        userBattleShipGrid.updatePlayerRow('E');
+                        break;
+
+                    case 'F' or 'f':
+                        userBattleShipGrid.updatePlayerRow('F');
+                        break;
+
+                    case 'G' or 'g':
+                        userBattleShipGrid.updatePlayerRow('G');
+                        break;
+
+                    case 'H' or 'h':
+                        userBattleShipGrid.updatePlayerRow('H');
+                        break;
+
+                    case 'I' or 'i':
+                        userBattleShipGrid.updatePlayerRow('I');
+                        break;
+
+                    case 'J' or 'j':
+                        userBattleShipGrid.updatePlayerRow('J');
+                        break;
+
+                    case 'Q' or 'q':
+                        userBattleShipGrid.RunGame = false;
+                        break;
+
+                    case 'R' or 'r':
+                        userBattleShipGrid.updatePlayerRow('_');
+                        userBattleShipGrid.updateRestartGameStatus(true);
+                        userBattleShipGrid.UserTriedAndFailed = false;
+                        break;
+
+                    case 'T' or 't':
+                        userBattleShipGrid.toggleTesting();
+                        break;
+
+                } // switch
+
+            } // else
+
+        } // function ParseCharFromActor
+
+        static void ShowHeader(BattleShipDisplay battleShipDisplay, UserBattleShipGrid userBattleShipGrid) {
+            var currentDate = DateTime.Now;
+
+            battleShipDisplay.WriteHeaderLine("........................", 0, 0);
+            battleShipDisplay.WriteHeaderLine($"Hello, {userBattleShipGrid.ActorName}, on {currentDate:d} at {currentDate:t}!", 0, 1);
+            battleShipDisplay.WriteHeaderLine("      Battleship        ", 0, 2);
+            battleShipDisplay.WriteHeaderLine("........................", 0, 3);
+            battleShipDisplay.WriteHeaderLine(".......The Ocean........", 0, 4);
+            battleShipDisplay.WriteHeaderLine("........................", 0, 5);
+
+            battleShipDisplay.WriteHeaderLine("Press 'q' or 'Q' to blow up the entire Grid...", 0, 7);
+
+            battleShipDisplay.WriteStringToPoint("1 2 3 4 5 6 7 8 9 10", battleShipDisplay.GetGridLeft(), battleShipDisplay.GetGridTop() - 2);
+        }
+
+    } // class Program
 }
