@@ -44,6 +44,7 @@ class Program
             int previousColumn = -1;
             bool userTriedAndFailed = false;
             int  userTriedAndFailedCount = 0;
+            bool BattleShipSunk = false;
 
             while (runGame)
             {
@@ -78,12 +79,12 @@ class Program
 
                             battleShipDisplay.WriteCharToGrid('X', column, row);
                             userBattleShipGrid.updateNumberOfHits(++numberOfStrikes);
-                            userBattleShipGrid.updatePlayerFires(false);
+                            // userBattleShipGrid.updatePlayerFires(false);
                             
                         }
                         else if (userBattleShipGrid.getTargetLocation(column, row) == userBattleShipGrid.getUserTargetChar()) {
                             battleShipDisplay.WriteCharToGrid(userBattleShipGrid.getUserTargetChar(), column, row);
-                            userBattleShipGrid.updatePlayerFires(false);
+                            // userBattleShipGrid.updatePlayerFires(false);
                         }
                         else {
                             battleShipDisplay.WriteCharToGrid('.', column, row);
@@ -114,34 +115,37 @@ class Program
                                          battleShipDisplay.GetErrorLeft() + testingPresentWidth + 11, battleShipDisplay.GetErrorTop() + 4);
 
                 }
-                else if ( userTriedAndFailed ) {
+                else if ( userTriedAndFailed && ! BattleShipSunk ) {
 
                     userTriedAndFailedCount++;
 
                     battleShipDisplay.WriteStringToPoint("You Ran out of turns",
-                                        battleShipDisplay.GetGridLeft() + 1, battleShipDisplay.GetGridTop() + 2);
+                                        battleShipDisplay.GetGridLeft() + testingPresentWidth + 1, battleShipDisplay.GetGridTop() + 2);
                     battleShipDisplay.WriteStringToPoint("The Battleship smashed you.",
-                                        battleShipDisplay.GetGridLeft() + 2, battleShipDisplay.GetGridTop() + 4);
+                                        battleShipDisplay.GetGridLeft() + testingPresentWidth + 2, battleShipDisplay.GetGridTop() + 4);
                     battleShipDisplay.WriteStringToPoint("You reincarnated now try to find Battleship again to find and sink!",
-                                        battleShipDisplay.GetGridLeft() + 3, battleShipDisplay.GetGridTop() + 6);
+                                        battleShipDisplay.GetGridLeft() + testingPresentWidth + 3, battleShipDisplay.GetGridTop() + 6);
                     
                     if (userTriedAndFailedCount > 1) {
+                        BattleShipSunk = false;
                         userTriedAndFailed = false;
                         userTriedAndFailedCount = 0;
                     }
                 }
 
                 if (userBattleShipGrid.ShipStrikes > 4) {
+                    BattleShipSunk = true;
+
                     battleShipDisplay.ReverseColors();
                     Task.Delay(200);
                     battleShipDisplay.WriteStringToPoint($"You sunk the Battleship!", 
-                                        battleShipDisplay.GetErrorLeft() + testingPresentWidth + 12, battleShipDisplay.GetErrorTop() + 7);
+                                    battleShipDisplay.GetErrorLeft() + testingPresentWidth + 12, battleShipDisplay.GetErrorTop() + 7);
                     battleShipDisplay.ForeColors();
                     Task.Delay(200);
                     battleShipDisplay.ReverseColors();
 
                     battleShipDisplay.WriteStringToPoint($"Press R or r to ReStart the Game.",
-                                        battleShipDisplay.GetErrorLeft() + testingPresentWidth + 10, battleShipDisplay.GetErrorTop() + 11);
+                                    battleShipDisplay.GetErrorLeft() + testingPresentWidth + 15, battleShipDisplay.GetErrorTop() + 10);
 
                 }
 
@@ -185,6 +189,8 @@ class Program
                 actorChar = battleShipInput.GetCharFromActor();
 
                 if (Char.IsNumber(actorChar) == true) {
+                    userBattleShipGrid.updatePlayerFires(false);
+
                     if (actorChar >= 49) {
                         userBattleShipGrid.updatePlayerColumn(actorChar - 48);
                     }
@@ -197,6 +203,8 @@ class Program
                     userBattleShipGrid.updatePlayerFires(true);
                 }
                 else {
+                    userBattleShipGrid.updatePlayerFires(false);
+
                     // Could use a List to replace this Switch Case
                     switch (actorChar) {
                         case 'A' or 'a':
@@ -249,14 +257,9 @@ class Program
                             break;
 
                         case 'T' or 't':
-                            char charToUse = '_';
-                            if ( previousRow >= 0 && previousRow < 10 ) {
-                                charToUse = userBattleShipGrid.getRowChar(previousRow);
-                            }
-                            userBattleShipGrid.updatePlayerRow(charToUse);
                             userBattleShipGrid.toggleTesting();
                             break;
-                    
+
                     } // switch
 
                 } // else
@@ -268,6 +271,13 @@ class Program
                             ( previousRow != userBattleShipGrid.getRowIndex() ||
                                 previousColumn != userBattleShipGrid.PlayerColumn - 1 ) ) {
 
+                    /*
+                     * These previous### variables exist to prevent error
+                     * after Actor types in Enter key
+                     * but hasn't changed Row and Column keys.
+                     * Preventing Actor from firing at the same target right
+                     * after trying it on previous turn.
+                     */
                     previousRow = userBattleShipGrid.getRowIndex();
                     previousColumn = userBattleShipGrid.PlayerColumn - 1;
 
