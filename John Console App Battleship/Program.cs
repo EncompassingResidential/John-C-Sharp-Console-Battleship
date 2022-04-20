@@ -125,7 +125,7 @@ class Program
                     battleShipDisplay.WriteStringToPoint("You reincarnated now try to find Battleship again to find and sink!",
                                         battleShipDisplay.GetGridLeft() + testingPresentWidth + 3, battleShipDisplay.GetGridTop() + 6);
                     
-                    if (userTriedAndFailedCount > 1) {
+                    if (userTriedAndFailedCount >= 1) {
                         BattleShipSunk = false;
                         userTriedAndFailed = false;
                         userTriedAndFailedCount = 0;
