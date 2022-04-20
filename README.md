@@ -12,25 +12,21 @@ It is run from the Command Line Interface (CLI) or double clicked from mouse.
 
 ### Initial Opening Screen
 
-https://github.com/EncompassingResidential/John-C-Sharp-Console-Battleship/blob/d5b8e3ac236bbd86bd205a4ece93453a2f2e54d1/John%20Console%20App%20Battleship/Battle%20Ship%20Opening%20Screen.png
+![Battle Ship Opening Screen](https://user-images.githubusercontent.com/94155021/164325773-49e6cd19-3373-41ed-bd93-aecf6959837c.png)
 
 ### Main Screen
 
-https://github.com/EncompassingResidential/John-C-Sharp-Console-Battleship/blob/d5b8e3ac236bbd86bd205a4ece93453a2f2e54d1/John%20Console%20App%20Battleship/Battle%20Ship%20Main%20Screen%20-%20Initial%20screen%20after%20choosing%20your%20Call%20Sign%20Name.png
-
-John Console App Battleship/Battle Ship Main Screen.png
-
-https://github.com/EncompassingResidential/John-C-Sharp-Console-Battleship/blob/d5b8e3ac236bbd86bd205a4ece93453a2f2e54d1/John%20Console%20App%20Battleship/Battle%20Ship%20Main%20Screen%20-%20Initial%20screen%20after%20choosing%20your%20Call%20Sign%20Name.png?raw=true
+![Battle Ship Main Screen - Initial screen after choosing your Call Sign Name](https://user-images.githubusercontent.com/94155021/164325679-63dd1a7c-4aba-446b-ac40-22592d972ace.png)
 
 ![Battle Ship Main Screen](https://user-images.githubusercontent.com/94155021/164325193-0dfa8440-0260-4291-ae65-5c1f0db23ea3.png)
 
 ### Sunk the Battleship screen
 
-https://github.com/EncompassingResidential/John-C-Sharp-Console-Battleship/blob/d5b8e3ac236bbd86bd205a4ece93453a2f2e54d1/John%20Console%20App%20Battleship/Battle%20Ship%20Main%20Screen%20-%20Win%20screen%20Sunk%20the%20Battleship.png
+![Battle Ship Main Screen - Win screen Sunk the Battleship](https://user-images.githubusercontent.com/94155021/164325601-fe3aa19d-86fd-4ebf-bfe2-f343eb679e77.png)
 
 ### Easter Egg Screen
 
-https://github.com/EncompassingResidential/John-C-Sharp-Console-Battleship/blob/d5b8e3ac236bbd86bd205a4ece93453a2f2e54d1/John%20Console%20App%20Battleship/Battle%20Ship%20Main%20Screen%20-%20Showing%20Easter%20Egg%20Radar%20option.png
+![Battle Ship Main Screen - Showing Easter Egg Radar option](https://user-images.githubusercontent.com/94155021/164325524-b5a073c0-bdb7-4d85-a428-40a05227a344.png)
 
 ### In PowerShell how to run on command line:
 
