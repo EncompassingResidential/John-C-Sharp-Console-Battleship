@@ -43,10 +43,12 @@ public class UserBattleShipGrid {
 
     public void resetUserShipStatus() {
 
-        updateGameOverStatus(false);
+        updateRestartGameStatus(false);
 
         PlayerRow = '_';
         PlayerColumn = -99;
+
+        updatePlayerFires(false);
 
         updateNumberOfHits(0);
 
@@ -104,7 +106,7 @@ public class UserBattleShipGrid {
     public bool areUserInputsValid() {
         bool returnBoolean = false;
         if (getRowIndex() >= 0 && getRowIndex() < _RowNumbers.Count) {
-            if ( PlayerColumn > 0 && PlayerColumn < _numberCols) {
+            if ( PlayerColumn > 0 && PlayerColumn <= _numberCols) {
                 returnBoolean = true;
             }
         }
@@ -117,6 +119,13 @@ public class UserBattleShipGrid {
 
         // when I did a direct return of the _RowNumbers.FindIndex it broke the code.
         return rowIndex;
+    }
+
+    public char getRowChar(int index) {
+
+        char charAtIndex = _RowNumbers.ElementAt(index);
+
+        return charAtIndex;
     }
 
     public void markUserTarget() {
@@ -139,7 +148,7 @@ public class UserBattleShipGrid {
         ShipStrikes = numberOfShipStrikes;
     }
 
-    public void updateGameOverStatus(bool gameStatus) {
+    public void updateRestartGameStatus(bool gameStatus) {
         StartGameOver = gameStatus;
     }
 
