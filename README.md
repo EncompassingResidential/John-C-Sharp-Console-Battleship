@@ -17,6 +17,8 @@ https://github.com/EncompassingResidential/John-C-Sharp-Console-Battleship/blob/
 ### Main Screen
 
 https://github.com/EncompassingResidential/John-C-Sharp-Console-Battleship/blob/d5b8e3ac236bbd86bd205a4ece93453a2f2e54d1/John%20Console%20App%20Battleship/Battle%20Ship%20Main%20Screen%20-%20Initial%20screen%20after%20choosing%20your%20Call%20Sign%20Name.png
+John Console App Battleship/Battle Ship Main Screen.png
+https://github.com/EncompassingResidential/John-C-Sharp-Console-Battleship/blob/d5b8e3ac236bbd86bd205a4ece93453a2f2e54d1/John%20Console%20App%20Battleship/Battle%20Ship%20Main%20Screen%20-%20Initial%20screen%20after%20choosing%20your%20Call%20Sign%20Name.png?raw=true
 
 ### Sunk the Battleship screen
 
