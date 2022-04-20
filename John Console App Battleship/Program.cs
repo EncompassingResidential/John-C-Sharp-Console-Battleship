@@ -51,7 +51,6 @@ class Program
                 var currentDate = DateTime.Now;
 
                 battleShipDisplay.ResetScreen();
-                userBattleShipGrid.updateRestartGameStatus(false);
 
                 battleShipDisplay.WriteHeaderLine("........................", 0, 0);
                 battleShipDisplay.WriteHeaderLine($"Hello, {name}, on {currentDate:d} at {currentDate:t}!", 0, 1);
@@ -115,7 +114,7 @@ class Program
                                          battleShipDisplay.GetErrorLeft() + testingPresentWidth + 11, battleShipDisplay.GetErrorTop() + 4);
 
                 }
-                else if ( userTriedAndFailed && ! BattleShipSunk ) {
+                else if ( ! userBattleShipGrid.StartGameOver && userTriedAndFailed && ! BattleShipSunk ) {
 
                     userTriedAndFailedCount++;
 
@@ -188,6 +187,8 @@ class Program
                 
                 actorChar = battleShipInput.GetCharFromActor();
 
+                userBattleShipGrid.updateRestartGameStatus(false);
+
                 if (Char.IsNumber(actorChar) == true) {
                     userBattleShipGrid.updatePlayerFires(false);
 
@@ -254,6 +255,7 @@ class Program
                         case 'R' or 'r':
                             userBattleShipGrid.updatePlayerRow('_');
                             userBattleShipGrid.updateRestartGameStatus(true);
+                            userTriedAndFailed = false;
                             break;
 
                         case 'T' or 't':

@@ -43,7 +43,7 @@ public class UserBattleShipGrid {
 
     public void resetUserShipStatus() {
 
-        updateRestartGameStatus(false);
+        // updateRestartGameStatus(false);
 
         PlayerRow = '_';
         PlayerColumn = -99;
