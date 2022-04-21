@@ -18,33 +18,32 @@ There were no pictures on the screen.  Some creative people (bored? :-) would ma
 shown / drawn by only using the characters and numbers on the keyboard.  Here is an e.g. of a drawn "Hi" then converted to ASCII characters.
 
 ```
-0loKMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-Xd''dXMMMMMMMMMMMMMMMMMMMMMMMMMWKdxNMMMMMMMMMMMMMM
-MMXo.,xNMMMMMMMMMMMMMMMMMMMMMMWx''dNMMMMMMMMMMMMMM
-MMMW0c.,xXMMMMMMMMMMMMMMMMMMMXl.;0MMMMMMMMMMMMMMMM
-MMMMMW0l',dNMMMMMMMMMMMMMMMWk,.oNMMMMMMMMMMMMMMMMM
-MMMMMMMWKc.,kWMMMMMMMMMMMMXl.,OWMMMMMMMMMMMMMMMMMM
-MMMMMMMMMWx.'0MMMMMMMMMMWXo.:XMMMMMMMMMMMMMWKk0NMM
-MMMMMMMMMMWl.lWMMMMMMMMMk:.'0MMMMMMMMMMMMMNo.  ;KM
-MMMMMMMMMMM0''0MMMMMMMMK; .dWMMMMMMMMMMMMM0'   .xM
-MMMMMMMMMMMN:.xMMMMMMMX:..oNMMMMMMMMMMMMMMNOl;.:XM
-MMMMMMMMMMMK,.OMMMMMMNl.lKNMMMMMMMMMMMMMMMMMMWKXMM
-MMMMMMMMMMWo.cNMMMMMMO.,KMMMMMMMMMMMMMMMMXOXMMMMMM
-MMMMMMMMMM0'.OMMMMMMWo lWMMMMMMMMMMMMMMMX:.dMMMMMM
-MMMMMMMMN0: 'dxxxxk0k,.xMMMMMMMMMMMMMMWO,.lXMMMMMM
-MMMMMMMMXl. ';;;;;,,' .OMMMMMMMMMMMMMMO..xNMMMMMMM
-MMMMMMMMMO.,KMMMMMWXo.;XMMMMMMMMMMMMMX;.dWMMMMMMMM
-MMMMMMMMWo lWMMMMMMN:.dWMMMMMMMMMMMMNl.cNMMMMMMMMM
-MMMMMMMMK,.OMMMMMMMO.,0MMMMMMMMMMMMNo.:KMMMMMMMMMM
-MMMMMMMNl.cNMMMMMMWo lWMMMMMMMMMMMNo.:KMMMMMMMMMMM
-MMMMMMMO.'0MMMMMMMX;.xMMMMMMMMMMMMx.,KMMMMMMMMMMMM
-MMMMMMX:.dWMMMMMMWd.;XMMMMMMMMMMMN:.dMMMMMMMMMMMMM
-MMMMMWx.;XMMMMMMMN:.dWMMMMMMMMMMMx.;KMMMMMMMMMMMMM
-MMMMNx.'OMMMMMMMMN:.xMMMMMMMMMMMX:.dMMMMMMMMMMMMMM
-MMWO;.:0WMMMMMMMMWo.:XMMMMMMMMMMNc.dWMMMNKkll0MMMM
-MMWxckWMMMMMMMMMMMNl.,kWMMMMMMMMMO..col:,,,:xXMMMM
-MMMMMMMMMMMMMMMMMMMNOoOWMMMMMMMMMW0dllldOKWMMMMMMM
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+.lc.                                              
+.:OO:.                          .:;               
+  .c0k;                        ;OO:               
+    .o0k;.                   .lKx.                
+      .oOk:                 ,k0c                  
+        .o0k,             .lKk'                   
+          ;KO.           .cXd.              .,.   
+           lXl          ,dKO.              cKWNx. 
+           .OO.        .xWX:              .OMMMX; 
+            dX;       .dK0c                'lxKd. 
+           .k0'       lXl.                    ..  
+           cXo       '0k.                .'.      
+          .OO'       cNl                .dK:      
+         .dNO:;;;;,.,kX;               'kKl.      
+        .lXNOxxxxxkkON0'              '00;        
+         '0k.      .cXx.             .xX:         
+         cNl        dX:              lXo          
+        .k0'       '0k.             cKd.          
+        lXo        cNl             cKd.           
+       ,0O.       .xX;            ;Xk.            
+      .dX:        :Xx.            dX:             
+      ;Kx.        dX:            ;Kx.             
+     ;0O'         dX;           .dX:              
+   'xKd.          cXd.           oX:     .,ll.    
+   ;o,             lKk,          '0Kocldkkxd;.    
+                    'c,           .:lll:'.        
 ```
 
 The Battleship App is run from the Command Line Interface (CLI) or the .EXE can be double clicked from your mouse.
