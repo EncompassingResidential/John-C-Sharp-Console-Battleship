@@ -7,7 +7,7 @@ When I was growing up there was no handy mouse by the computers.  Only the keybo
 There were no pictures on the screen.  Some creative people (bored? :-) would make an image
 shown / drawn by only using the characters and numbers on the keyboard.  Here is an e.g.
 
-'''
+```
 0loKMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 Xd''dXMMMMMMMMMMMMMMMMMMMMMMMMMWKdxNMMMMMMMMMMMMMM
 MMXo.,xNMMMMMMMMMMMMMMMMMMMMMMWx''dNMMMMMMMMMMMMMM
@@ -35,7 +35,7 @@ MMWO;.:0WMMMMMMMMWo.:XMMMMMMMMMMNc.dWMMMNKkll0MMMM
 MMWxckWMMMMMMMMMMMNl.,kWMMMMMMMMMO..col:,,,:xXMMMM
 MMMMMMMMMMMMMMMMMMMNOoOWMMMMMMMMMW0dllldOKWMMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-'''
+```
 
 It is run from the Command Line Interface (CLI) or double clicked from mouse.
 
