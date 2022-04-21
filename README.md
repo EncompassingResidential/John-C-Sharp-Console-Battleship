@@ -1,11 +1,21 @@
-﻿# John Console App Battleship
+﻿# John Ritz, Full Stack Programmer
+
+BS in Computer Science
+certified as a 2nd level Addiction Counselor (CADC II) in Oregon
+certified as a Qualified Professional in Mental Health and Addiction in North Carolina
+
+[You can find my CV Resume here at Linked In www](https://www.linkedin.com/in/johntritz/)
+
+[Click here for my personal Life Coach website, specialty is Addiction after 5 years of addiction counseling in Oregon from 2016 to 2021](https://www.soberjourneycopilot.com/)
+
+# John Console App Battleship
 
 Hello Intrepid Explorer
 
 Welcome to my C# (C Sharp) Console App. (Application)  You might not believe it, but this app has no web stuff, gasp.  Seriously, only ASCII characters. 
 When I was growing up there was no handy mouse by the computers.  Only the keyboard.
 There were no pictures on the screen.  Some creative people (bored? :-) would make an image
-shown / drawn by only using the characters and numbers on the keyboard.  Here is an e.g.
+shown / drawn by only using the characters and numbers on the keyboard.  Here is an e.g. of a drawn "Hi" then converted to ASCII characters.
 
 ```
 0loKMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
@@ -37,11 +47,8 @@ MMMMMMMMMMMMMMMMMMMNOoOWMMMMMMMMMW0dllldOKWMMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 ```
 
-It is run from the Command Line Interface (CLI) or double clicked from mouse.
-
-[You can find John Ritz's CV Resume here at Linked In www](https://www.linkedin.com/in/johntritz/)
-
-[Click here for my personal Life Coach website, specialty is Addiction after 5 years of addiction counseling in Oregon from 2016 to 2021](https://www.soberjourneycopilot.com/)
+The Battleship App is run from the Command Line Interface (CLI) or the .EXE can be double clicked from your mouse.
+See instructions below to compile / build your executable to run.
 
 ## When the App comes up
 
@@ -62,6 +69,48 @@ It is run from the Command Line Interface (CLI) or double clicked from mouse.
 ### Easter Egg Screen
 
 ![Battle Ship Main Screen - Showing Easter Egg Radar option](https://user-images.githubusercontent.com/94155021/164325524-b5a073c0-bdb7-4d85-a428-40a05227a344.png)
+
+# How to build and create the executable to run
+
+### 1 - I used Visual Studio 2022 to compile then create an executable to run.
+
+### 2 - Click on `Debug` or `Release` at the top of the screen:
+
+![Visual Studio 2022 Debug or Release builds](https://user-images.githubusercontent.com/94155021/164475743-ef9aaafc-9b07-4365-8021-c24977bacb71.png)
+
+### 3 - Then Choose `"Build Solution"` under the `"Build"` menu.
+
+![Visual Studio 2022 Build Solution - Creating the executable to run](https://user-images.githubusercontent.com/94155021/164476311-9daae23c-0545-4cd4-8c77-4aec96a4b360.png)
+
+### 4 - Then go to directory that is created by Visual Studio.  Such as:
+
+```
+    Directory: C:\Users\...\source\repos\John Console App Battleship\John Console App Battleship\bin\debug\net6.0
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----         4/15/2022   6:28 AM            473 John Console App Battleship.deps.json
+-a----         4/20/2022   2:05 PM          21504 John Console App Battleship.dll
+-a----         4/20/2022   2:05 PM         148992 John Console App Battleship.exe
+-a----         4/20/2022   2:05 PM          18084 John Console App Battleship.pdb
+-a----         4/15/2022   6:28 AM            147 John Console App Battleship.runtimeconfig.json
+```
+
+### 5 - Once it is compiled 
+
+`cd C:\Users\...\source\repos\John Console App Battleship\John Console App Battleship\bin\debug\net6.0`
+
+or for Release / Production build go to
+
+`cd C:\Users\...\source\repos\John Console App Battleship\John Console App Battleship\bin\Release\net6.0`
+
+If you are in a Windows File manager then double click on `John Console App Battleship.exe`
+
+If you are in your Command Line Interface (CLI) type in `John Console App Battleship.exe` and press Enter key (return key)
+
+
+For PowerShell CLI see next section...
+
 
 ### In PowerShell how to run on command line:
 
@@ -101,7 +150,7 @@ Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName
      {
 ~~~
 
-### C# resources used
+## C# resources used
 
 [Learning a LOT of the basics of C##](https://www.codecademy.com/courses/learn-c-sharp/lessons/csharp-inheritance/exercises/intro-inheritance)
 
