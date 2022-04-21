@@ -1,11 +1,11 @@
 ﻿# John Console App Battleship
 
-Hello Intrepid Explorer,
+Hello Intrepid Explorer
 
-    Welcome to my C# (C Sharp) Console App. (Application)  You might not believe it, but this app has no web stuff, gasp.  Seriously, only ASCII characters. 
-    When I was growing up there was no handy mouse by the computers.  Only the keyboard.
-    There were no pictures on the screen, at most creative people would make an image
-    shown by using the characters and numbers on the keyboard.  e.g.
+Welcome to my C# (C Sharp) Console App. (Application)  You might not believe it, but this app has no web stuff, gasp.  Seriously, only ASCII characters. 
+When I was growing up there was no handy mouse by the computers.  Only the keyboard.
+There were no pictures on the screen, at most creative people would make an image
+shown by using the characters and numbers on the keyboard.  e.g.
     
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNXK000KXNWWWMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNX0kdollooodk0XNWMM
